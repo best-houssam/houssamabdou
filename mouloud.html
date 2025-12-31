@@ -3,672 +3,783 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moulloud - مولود</title>
+    <title>جدول حسام</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            font-family: 'Cairo', sans-serif;
+            background-color: #f9fafb;
+            color: #111827;
         }
 
-        .animated-bg {
-            position: fixed;
+        body.dark {
+            background-color: #111827;
+            color: #f3f4f6;
+        }
+
+        .navbar {
+            background-color: white;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 1.5rem;
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
+            z-index: 50;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.5;
-            animation: float 20s infinite ease-in-out;
+        body.dark .navbar {
+            background-color: #1f2937;
+            border-color: #374151;
         }
 
-        .shape:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            background: rgba(255, 107, 107, 0.3);
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
+        .navbar-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .shape:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            background: rgba(78, 205, 196, 0.3);
-            top: 60%;
-            left: 70%;
-            animation-delay: 5s;
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .shape:nth-child(3) {
-            width: 250px;
-            height: 250px;
-            background: rgba(255, 195, 113, 0.3);
-            top: 40%;
-            left: 40%;
-            animation-delay: 10s;
+        .navbar-brand svg {
+            color: #3b82f6;
         }
 
-        .shape:nth-child(4) {
-            width: 180px;
-            height: 180px;
-            background: rgba(162, 155, 254, 0.3);
-            top: 20%;
-            left: 80%;
-            animation-delay: 15s;
+        .navbar-title {
+            font-size: 1.5rem;
+            font-weight: 700;
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-            }
-            25% {
-                transform: translate(50px, -50px) scale(1.1);
-            }
-            50% {
-                transform: translate(-30px, 50px) scale(0.9);
-            }
-            75% {
-                transform: translate(40px, 30px) scale(1.05);
-            }
+        .navbar-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+            background-color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        body.dark .btn {
+            background-color: #1f2937;
+            border-color: #374151;
+            color: #f3f4f6;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .nav-menu {
+            max-width: 1280px;
+            margin: 1rem auto 0;
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-link {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            white-space: nowrap;
+            font-weight: 500;
+            color: #111827;
+        }
+
+        body.dark .nav-link {
+            color: #f3f4f6;
+        }
+
+        .nav-link.active {
+            background-color: #3b82f6;
+            color: white;
         }
 
         .container {
-            position: relative;
-            z-index: 2;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 60px 50px;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            width: 90%;
-            max-width: 500px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.5rem;
         }
 
-        .name-container {
-            margin-bottom: 50px;
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
+            margin-bottom: 1.5rem;
         }
 
-        .name {
-            font-size: 48px;
-            font-weight: bold;
-            color: #667eea;
-            min-height: 60px;
-            display: inline-block;
-            letter-spacing: 2px;
+        body.dark .card {
+            background-color: #1f2937;
+            border-color: #374151;
         }
 
-        .name::after {
-            content: '|';
-            animation: blink 0.7s infinite;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
         }
 
-        .language-indicator {
-            font-size: 14px;
-            color: #999;
-            margin-top: 10px;
-            min-height: 20px;
+        body.dark .stat-card {
+            background-color: #1f2937;
+            border-color: #374151;
         }
 
-        .code-section {
-            margin-top: 30px;
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .code-section label {
-            display: block;
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 15px;
-            font-weight: 600;
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
         }
 
-        .code-input {
-            width: 100%;
-            padding: 15px 20px;
-            font-size: 16px;
-            border: 2px solid #ddd;
-            border-radius: 15px;
-            text-align: center;
-            letter-spacing: 3px;
-            transition: all 0.3s;
-            font-family: monospace;
+        body.dark .stat-label {
+            color: #9ca3af;
         }
 
-        .code-input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        .stat-value {
+            font-size: 1.875rem;
+            font-weight: 700;
         }
 
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            border-radius: 15px;
+        .goals-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .goal-category {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
+        }
+
+        body.dark .goal-category {
+            background-color: #1f2937;
+            border-color: #374151;
+        }
+
+        .goal-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .goal-item {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-right: 4px solid;
+        }
+
+        .day-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .day-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+            background-color: white;
             cursor: pointer;
-            transition: all 0.3s;
+            white-space: nowrap;
+            font-weight: 500;
         }
 
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        body.dark .day-btn {
+            background-color: #1f2937;
+            border-color: #374151;
+            color: #f3f4f6;
         }
 
-        .submit-btn:active {
-            transform: translateY(0);
+        .day-btn.active {
+            background-color: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
         }
 
-        .error-message {
-            color: #e74c3c;
-            margin-top: 15px;
-            font-size: 14px;
-            min-height: 20px;
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
         }
 
-        .pdf-viewer {
+        .schedule-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
+        }
+
+        body.dark .schedule-card {
+            background-color: #1f2937;
+            border-color: #374151;
+        }
+
+        .schedule-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .subject-item {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+            border-right: 4px solid #3b82f6;
+            background-color: #dbeafe;
+        }
+
+        body.dark .subject-item {
+            background-color: #1e3a8a;
+        }
+
+        .gym-item {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+            border-right: 4px solid #ef4444;
+            background-color: #fee2e2;
+        }
+
+        body.dark .gym-item {
+            background-color: #7f1d1d;
+        }
+
+        .hidden {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
         }
 
-        .pdf-viewer.active {
-            display: flex;
+        h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
         }
 
-        .pdf-controls {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1001;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
         }
 
-        .control-btn {
-            background: white;
-            color: #333;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .text-blue { color: #3b82f6; }
+        .text-red { color: #ef4444; }
+        .text-green { color: #10b981; }
+        .text-purple { color: #8b5cf6; }
+        .text-yellow { color: #f59e0b; }
+
+        svg {
+            width: 24px;
+            height: 24px;
+            display: inline-block;
         }
 
-        .control-btn:hover {
-            background: #f0f0f0;
-            transform: scale(1.05);
+        .icon-lg {
+            width: 40px;
+            height: 40px;
         }
 
-        .control-btn.download {
-            background: #667eea;
-            color: white;
-        }
-
-        .control-btn.download:hover {
-            background: #5568d3;
-        }
-
-        .control-btn.print {
-            background: #764ba2;
-            color: white;
-        }
-
-        .control-btn.print:hover {
-            background: #653a8a;
-        }
-
-        .control-btn.close {
-            background: #e74c3c;
-            color: white;
-        }
-
-        .control-btn.close:hover {
-            background: #c0392b;
-        }
-
-        .pdf-content {
-            width: 90%;
-            max-width: 900px;
-            height: 85%;
-            background: white;
-            border-radius: 10px;
-            overflow: auto;
-            padding: 0;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .pdf-page {
-            width: 100%;
-            max-width: 794px;
-            min-height: 1123px;
-            background: white;
-            margin: 20px auto;
-            padding: 60px 80px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box;
-        }
-
-        .pdf-page pre {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 14px;
-            line-height: 1.8;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            margin: 0;
-        }
-
-        .pdf-message {
+        .text-center {
             text-align: center;
-            color: #666;
-            font-size: 18px;
-            padding: 40px;
         }
 
-        /* تابلت */
+        .italic {
+            font-style: italic;
+        }
+
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .mt-6 {
+            margin-top: 1.5rem;
+        }
+
         @media (max-width: 768px) {
-            .container {
-                padding: 50px 40px;
-                width: 85%;
-                max-width: 450px;
-            }
-            .name {
-                font-size: 42px;
-            }
-            .shape {
-                filter: blur(30px);
-            }
-        }
-
-        /* هواتف كبيرة */
-        @media (max-width: 600px) {
-            .container {
-                padding: 40px 30px;
-                width: 90%;
-                border-radius: 20px;
-            }
-            .name {
-                font-size: 36px;
-                min-height: 50px;
-            }
-            .code-section label {
-                font-size: 16px;
-            }
-            .code-input {
-                padding: 12px 15px;
-                font-size: 15px;
-            }
-            .submit-btn {
-                padding: 12px;
-                font-size: 16px;
-            }
-            .pdf-content {
-                width: 95%;
-                height: 90%;
-                padding: 15px;
-            }
-        }
-
-        /* هواتف صغيرة */
-        @media (max-width: 400px) {
-            body {
-                padding: 10px;
-            }
-            .container {
-                padding: 30px 20px;
-                width: 95%;
-                border-radius: 15px;
-            }
-            .name {
-                font-size: 28px;
-                min-height: 40px;
-            }
-            .name-container {
-                margin-bottom: 30px;
-            }
-            .code-section label {
-                font-size: 15px;
-                margin-bottom: 10px;
-            }
-            .code-input {
-                padding: 10px;
-                font-size: 14px;
-                letter-spacing: 2px;
-            }
-            .submit-btn {
-                padding: 10px;
-                font-size: 15px;
-            }
-            .shape:nth-child(1),
-            .shape:nth-child(4) {
-                width: 150px;
-                height: 150px;
-            }
-            .shape:nth-child(2) {
-                width: 120px;
-                height: 120px;
-            }
-            .shape:nth-child(3) {
-                width: 130px;
-                height: 130px;
-            }
-            .control-btn {
-                padding: 10px 18px;
-                font-size: 14px;
-                gap: 5px;
-            }
-            .pdf-controls {
-                top: 10px;
-                right: 10px;
-                gap: 8px;
-            }
-        }
-
-        /* شاشات عريضة جداً */
-        @media (min-width: 1200px) {
-            .container {
-                max-width: 550px;
-                padding: 70px 60px;
-            }
-            .name {
-                font-size: 52px;
+            .schedule-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="animated-bg">
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <h1 class="navbar-title">جدول حسام</h1>
+            </div>
+            <div class="navbar-controls">
+                <button class="btn" onclick="toggleTheme()">
+                    <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button class="btn" onclick="toggleLanguage()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m5 8 6 6"></path>
+                        <path d="m4 14 6-6 2-3"></path>
+                        <path d="M2 5h12"></path>
+                        <path d="M7 2h1"></path>
+                        <path d="m22 22-5-10-5 10"></path>
+                        <path d="M14 18h6"></path>
+                    </svg>
+                    <span id="lang-text">EN</span>
+                </button>
+            </div>
+        </div>
+        <div class="nav-menu">
+            <button class="nav-link active" onclick="showPage('home')">الرئيسية</button>
+            <button class="nav-link" onclick="showPage('daily')">الجدول اليومي</button>
+            <button class="nav-link" onclick="showPage('weekly')">الجدول الأسبوعي</button>
+            <button class="nav-link" onclick="showPage('goals')">الأهداف السنوية</button>
+            <button class="nav-link" onclick="showPage('settings')">الإعدادات</button>
+            <button class="nav-link" onclick="showPage('about')">حول</button>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="page-home" class="container">
+        <div class="card">
+            <h2>لوحة التحكم</h2>
+            <p class="stat-label italic">"النجاح هو مجموع الجهود الصغيرة المتكررة يوماً بعد يوم"</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <p class="stat-label">ساعات الدراسة</p>
+                        <p class="stat-value">63</p>
+                    </div>
+                    <svg class="icon-lg text-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <p class="stat-label">ساعات الرياضة</p>
+                        <p class="stat-value">12</p>
+                    </div>
+                    <svg class="icon-lg text-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m6.5 6.5 11 11"></path>
+                        <path d="m21 21-1-1"></path>
+                        <path d="m3 3 1 1"></path>
+                        <path d="m18 22 4-4"></path>
+                        <path d="m2 6 4-4"></path>
+                        <path d="m3 10 7-7"></path>
+                        <path d="m14 21 7-7"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <p class="stat-label">المهام المنجزة</p>
+                        <p class="stat-value">24/30</p>
+                    </div>
+                    <svg class="icon-lg text-green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <p class="stat-label">إجمالي الساعات</p>
+                        <p class="stat-value">75</p>
+                    </div>
+                    <svg class="icon-lg text-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="container">
-        <div class="name-container">
-            <div class="name" id="animatedName"></div>
-            <div class="language-indicator" id="langIndicator"></div>
+    <!-- Daily Page -->
+    <div id="page-daily" class="container hidden">
+        <h2>جدول اليوم</h2>
+        <div class="day-buttons">
+            <button class="day-btn active" onclick="selectDay('sunday', this)">الأحد</button>
+            <button class="day-btn" onclick="selectDay('monday', this)">الإثنين</button>
+            <button class="day-btn" onclick="selectDay('tuesday', this)">الثلاثاء</button>
+            <button class="day-btn" onclick="selectDay('wednesday', this)">الأربعاء</button>
+            <button class="day-btn" onclick="selectDay('thursday', this)">الخميس</button>
+            <button class="day-btn" onclick="selectDay('friday', this)">الجمعة</button>
+            <button class="day-btn" onclick="selectDay('saturday', this)">السبت</button>
         </div>
 
-        <div class="code-section">
-            <label for="codeInput">أدخل الرمز الخاص بك</label>
-            <input type="text" id="codeInput" class="code-input" placeholder="XXXX-XXXX">
-            <button class="submit-btn" onclick="checkCode()">الدخول</button>
-            <div class="error-message" id="errorMsg"></div>
+        <div class="schedule-grid">
+            <div class="schedule-card">
+                <h3 class="schedule-title text-blue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                    </svg>
+                    المواد الدراسية
+                </h3>
+                <div id="study-schedule"></div>
+            </div>
+            <div class="schedule-card">
+                <h3 class="schedule-title text-red">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m6.5 6.5 11 11"></path>
+                        <path d="m21 21-1-1"></path>
+                        <path d="m3 3 1 1"></path>
+                        <path d="m18 22 4-4"></path>
+                        <path d="m2 6 4-4"></path>
+                        <path d="m3 10 7-7"></path>
+                        <path d="m14 21 7-7"></path>
+                    </svg>
+                    برنامج التمرين
+                </h3>
+                <div id="gym-schedule"></div>
+            </div>
         </div>
     </div>
 
-    <div class="pdf-viewer" id="pdfViewer">
-        <div class="pdf-controls">
-            <button class="control-btn download" onclick="downloadPDF()">
-                <span>📥</span> تحميل
-            </button>
-            <button class="control-btn print" onclick="printPDF()">
-                <span>🖨️</span> طباعة
-            </button>
-            <button class="control-btn close" onclick="closePDF()">
-                <span>✕</span> إغلاق
-            </button>
+    <!-- Weekly Page -->
+    <div id="page-weekly" class="container hidden">
+        <h2>نظرة أسبوعية</h2>
+        <div id="weekly-content"></div>
+    </div>
+
+    <!-- Goals Page -->
+    <div id="page-goals" class="container hidden">
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+            <svg class="text-blue" style="width: 32px; height: 32px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+            <h2 style="margin-bottom: 0;">الأهداف السنوية</h2>
         </div>
-        <div class="pdf-content" id="pdfContent">
-            <div class="pdf-message">يتم تحميل الملف...</div>
+
+        <div class="goals-grid" id="goals-content"></div>
+
+        <div class="card text-center mt-6">
+            <svg class="icon-lg text-yellow" style="margin: 0 auto 0.75rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                <path d="M4 22h16"></path>
+                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+            </svg>
+            <p style="font-size: 1.125rem; font-weight: 600;">كل هدف تحققه يقربك من نسختك الأفضل. استمر والله معك!</p>
+        </div>
+    </div>
+
+    <!-- Settings Page -->
+    <div id="page-settings" class="container hidden">
+        <h2>الإعدادات</h2>
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3>الوضع الداكن / الفاتح</h3>
+                <button class="btn" onclick="toggleTheme()" style="padding: 1rem;">
+                    <svg id="settings-theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Page -->
+    <div id="page-about" class="container hidden">
+        <h2>حول</h2>
+        <div class="card">
+            <p style="font-size: 1.125rem; line-height: 1.75;">جدول حسام هو أداة لإدارة الوقت تساعدك على تنظيم حياتك اليومية</p>
         </div>
     </div>
 
     <script>
-        // قاعدة بيانات الأكواد والملفات
-        const clientData = {
-            'DEMO-2024': {
-                name: 'عميل تجريبي',
-                content: `
-                    <h1>مرحباً بك</h1>
-                    <p>هذا ملف PDF تجريبي. في التطبيق الحقيقي، سيتم تحميل ملف PDF الفعلي الخاص بك هنا.</p>
-                    <h2>محتوى المستند</h2>
-                    <p>يمكنك إضافة أي محتوى تريده هنا. سيتم عرض ملفات PDF الحقيقية عند رفعها على الخادم.</p>
-                `
-            },
-            'TEST-1234': {
-                name: 'عميل آخر',
-                content: `
-                    <h1>مستند خاص</h1>
-                    <p>هذا مستند خاص آخر للعميل.</p>
-                `
-            },
-            'MOULOUD-2025': {
-                name: 'Mouloud Test',
-                content: `
-                    <div class="pdf-page">
-                        <pre>Mouloud Test</pre>
-                    </div>
-                `
-            },
-            'NATURE-2025': {
-                name: 'Nature Essay',
-                content: `
-                    <div class="pdf-page">
-                        <pre>The Beauty of Nature
-Nature is the essence of life on Earth. It surrounds us with its infinite beauty —
-from the towering mountains and flowing rivers to the vast deserts and deep
-oceans. Every corner of nature tells a story of balance, harmony, and endless
-wonder. The green forests breathe life into our world, providing the oxygen we
-need to live. The blue sky stretches endlessly above, a canvas that changes colors
-with every sunrise and sunset. The sound of birds, the whisper of wind through the
-trees, and the rhythm of waves against the shore all create a melody that soothes
-the soul. Nature is not only beautiful but also essential. It teaches us patience,
-resilience, and respect. It provides food, water, and shelter, yet asks for nothing in
-return but care. When we protect nature, we protect our own future. In every leaf,
-flower, and drop of rain, there lies a reminder that life is precious — and that we
-are but a small part of a vast, magnificent creation.</pre>
-                    </div>
-                `
-            }
+        const studySchedule = {
+            sunday: [
+                { subject: 'رياضيات', hours: 3 },
+                { subject: 'فيزياء', hours: 3 },
+                { subject: 'تاريخ', hours: 1.5 },
+                { subject: 'عربية', hours: 1.5 }
+            ],
+            monday: [
+                { subject: 'هندسة', hours: 3 },
+                { subject: 'رياضيات', hours: 3 },
+                { subject: 'فلسفة', hours: 1.5 },
+                { subject: 'فرنسية', hours: 1.5 }
+            ],
+            tuesday: [
+                { subject: 'فيزياء', hours: 3 },
+                { subject: 'هندسة', hours: 3 },
+                { subject: 'جغرافيا', hours: 1.5 },
+                { subject: 'إنجليزية', hours: 1.5 }
+            ],
+            wednesday: [
+                { subject: 'رياضيات', hours: 3 },
+                { subject: 'فيزياء', hours: 3 },
+                { subject: 'إسلامية', hours: 1.5 },
+                { subject: 'أمازيغية', hours: 1.5 }
+            ],
+            thursday: [
+                { subject: 'هندسة', hours: 3 },
+                { subject: 'رياضيات', hours: 3 },
+                { subject: 'تاريخ', hours: 1.5 },
+                { subject: 'فرنسية', hours: 1.5 }
+            ],
+            friday: [
+                { subject: 'فيزياء', hours: 3 },
+                { subject: 'رياضيات', hours: 3 },
+                { subject: 'فلسفة', hours: 1.5 },
+                { subject: 'عربية', hours: 1.5 }
+            ],
+            saturday: [
+                { subject: 'هندسة (مراجعة)', hours: 3 },
+                { subject: 'جغرافيا (مراجعة)', hours: 1.5 },
+                { subject: 'إسلامية (مراجعة)', hours: 1.5 },
+                { subject: 'إنجليزية', hours: 1.5 }
+            ]
         };
 
-        // متغير لحفظ بيانات العميل الحالي
-        let currentClientData = null;
+        const gymSchedule = {
+            sunday: ['الصدر', 'البايسبس'],
+            monday: ['الأرجل', 'البطن', 'أسفل الظهر الخفيف'],
+            tuesday: [],
+            wednesday: ['الظهر', 'ترايسبس'],
+            thursday: ['الأكتاف'],
+            friday: ['تصحيح الوضعية', 'العلوي', 'الظهر', 'منتصف الظهر', 'الكتف الخلفي', 'الرقبة'],
+            saturday: []
+        };
 
-        // النصوص بلغات مختلفة
-        const names = [
-            { text: 'مولود', lang: 'العربية' },
-            { text: 'Moulloud', lang: 'Français' },
-            { text: 'Moulloud', lang: 'English' }
+        const goals = [
+            {
+                category: 'الأهداف الأكاديمية',
+                color: '#3b82f6',
+                goals: [
+                    'الحصول على شهادة البكالوريا بمعدل 17',
+                    'الالتحاق بجامعة الأمن السيبراني',
+                    'تعلم لغات البرمجة: Python و C# و C++'
+                ]
+            },
+            {
+                category: 'الأهداف الدينية',
+                color: '#10b981',
+                goals: [
+                    'الالتزام بالصلوات وعدم تضييع صلاة',
+                    'ختم القرآن الكريم 3 مرات على الأقل خلال السنة'
+                ]
+            },
+            {
+                category: 'الأهداف المالية',
+                color: '#f59e0b',
+                goals: ['جمع أكثر من 1000 دولار']
+            },
+            {
+                category: 'الأهداف الهجرة',
+                color: '#8b5cf6',
+                goals: ['الهجرة والسفر إلى كندا']
+            },
+            {
+                category: 'الأهداف الرياضية',
+                color: '#ef4444',
+                goals: [
+                    'تحقيق 100 عقلة متتالية',
+                    'تحقيق 300 بوش أب في مجموعة واحدة',
+                    'تحقيق 100 ديبس في مجموعة واحدة',
+                    'بناء عضلات أفضل من المستوى الحالي'
+                ]
+            },
+            {
+                category: 'أهداف المشاريع',
+                color: '#6366f1',
+                goals: [
+                    'إنجاح قناة YouTube والوصول إلى 100 ألف مشترك',
+                    'النمو على Instagram و TikTok'
+                ]
+            }
         ];
 
-        let currentNameIndex = 0;
-        let currentCharIndex = 0;
-        let isDeleting = false;
-        let typingSpeed = 150;
+        let currentDay = 'sunday';
 
-        function typeEffect() {
-            const nameElement = document.getElementById('animatedName');
-            const langElement = document.getElementById('langIndicator');
-            const currentName = names[currentNameIndex];
+        function showPage(page) {
+            document.querySelectorAll('[id^="page-"]').forEach(p => p.classList.add('hidden'));
+            document.getElementById('page-' + page).classList.remove('hidden');
             
-            if (!isDeleting && currentCharIndex <= currentName.text.length) {
-                nameElement.textContent = currentName.text.substring(0, currentCharIndex);
-                langElement.textContent = currentName.lang;
-                currentCharIndex++;
-                setTimeout(typeEffect, typingSpeed);
-            } else if (!isDeleting && currentCharIndex > currentName.text.length) {
-                setTimeout(() => {
-                    isDeleting = true;
-                    typeEffect();
-                }, 2000);
-            } else if (isDeleting && currentCharIndex > 0) {
-                nameElement.textContent = currentName.text.substring(0, currentCharIndex - 1);
-                currentCharIndex--;
-                setTimeout(typeEffect, typingSpeed / 2);
-            } else if (isDeleting && currentCharIndex === 0) {
-                isDeleting = false;
-                currentNameIndex = (currentNameIndex + 1) % names.length;
-                setTimeout(typeEffect, 500);
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (page === 'daily') {
+                updateDailySchedule();
+            } else if (page === 'weekly') {
+                updateWeeklySchedule();
+            } else if (page === 'goals') {
+                updateGoals();
             }
         }
 
-        // بدء تأثير الكتابة
-        typeEffect();
-
-        function checkCode() {
-            const code = document.getElementById('codeInput').value.trim().toUpperCase();
-            const errorMsg = document.getElementById('errorMsg');
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            const isDark = document.body.classList.contains('dark');
+            const moonPath = 'M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z';
+            const sunPath = 'M12 2v2 M12 20v2 M4.22 4.22l1.42 1.42 M18.36 18.36l1.42 1.42 M2 12h2 M20 12h2 M4.22 19.78l1.42-1.42 M18.36 5.64l1.42-1.42';
             
-            if (code === '') {
-                errorMsg.textContent = 'الرجاء إدخال الرمز';
-                return;
-            }
+            document.querySelectorAll('#theme-icon path, #settings-theme-icon path').forEach(path => {
+                path.setAttribute('d', isDark ? sunPath : moonPath);
+            });
+        }
 
-            if (clientData[code]) {
-                errorMsg.textContent = '';
-                showPDF(clientData[code]);
+        function toggleLanguage() {
+            const langText = document.getElementById('lang-text');
+            langText.textContent = langText.textContent === 'EN' ? 'ع' : 'EN';
+        }
+
+        function selectDay(day, btn) {
+            currentDay = day;
+            document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateDailySchedule();
+        }
+
+        function updateDailySchedule() {
+            const studyDiv = document.getElementById('study-schedule');
+            const gymDiv = document.getElementById('gym-schedule');
+            
+            studyDiv.innerHTML = studySchedule[currentDay].map(s => 
+                `<div class="subject-item">
+                    <p style="font-weight: 700;">${s.subject}</p>
+                    <p class="stat-label">${s.hours} ساعات</p>
+                </div>`
+            ).join('');
+
+            if (gymSchedule[currentDay].length > 0) {
+                gymDiv.innerHTML = gymSchedule[currentDay].map(e => 
+                    `<div class="gym-item">
+                        <p style="font-weight: 700; color: #991b1b;">${e}</p>
+                    </div>`
+                ).join('');
             } else {
-                errorMsg.textContent = 'الرمز غير صحيح. يرجى المحاولة مرة أخرى.';
-                document.getElementById('codeInput').value = '';
+                gymDiv.innerHTML = '<div style="padding: 1rem; background-color: #f3f4f6; border-radius: 0.5rem; text-align: center;"><p class="stat-label">لا يوجد تمرين في هذا اليوم</p></div>';
             }
         }
 
-        function showPDF(data) {
-            const pdfViewer = document.getElementById('pdfViewer');
-            const pdfContent = document.getElementById('pdfContent');
+        function updateWeeklySchedule() {
+            const weeklyDiv = document.getElementById('weekly-content');
+            const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+            const dayNames = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
             
-            currentClientData = data;
-            pdfContent.innerHTML = data.content;
-            pdfViewer.classList.add('active');
+            weeklyDiv.innerHTML = days.map((day, i) => {
+                const studyItems = studySchedule[day].map(s => 
+                    `<div style="padding: 0.75rem; background-color: #dbeafe; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                        <p style="font-weight: 700;">${s.subject}</p>
+                        <p style="font-size: 0.875rem; color: #6b7280;">${s.hours}h</p>
+                    </div>`
+                ).join('');
+
+                let gymItems = '';
+                if (gymSchedule[day].length > 0) {
+                    gymItems = `<div>
+                        <h4 style="font-weight: 700; margin-bottom: 0.75rem; color: #ef4444;">برنامج التمرين</h4>
+                        ${gymSchedule[day].map(e => 
+                            `<div style="padding: 0.75rem; background-color: #fee2e2; border-radius: 0.5rem; margin-bottom: 0.5rem;">
+                                <p style="font-weight: 700; color: #991b1b;">${e}</p>
+                            </div>`
+                        ).join('')}
+                    </div>`;
+                }
+
+                return `<div class="goal-category">
+                    <h3 style="color: #3b82f6; margin-bottom: 1rem;">${dayNames[i]}</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <h4 style="font-weight: 700; margin-bottom: 0.75rem; color: #3b82f6;">المواد الدراسية</h4>
+                            ${studyItems}
+                        </div>
+                        ${gymItems}
+                    </div>
+                </div>`;
+            }).join('');
         }
 
-        function closePDF() {
-            const pdfViewer = document.getElementById('pdfViewer');
-            pdfViewer.classList.remove('active');
-            document.getElementById('codeInput').value = '';
-            currentClientData = null;
+        function updateGoals() {
+            const goalsDiv = document.getElementById('goals-content');
+            goalsDiv.innerHTML = goals.map(section => `
+                <div class="goal-category">
+                    <h3 style="color: ${section.color}; margin-bottom: 1rem;">${section.category}</h3>
+                    <div class="goal-items">
+                        ${section.goals.map(goal => `
+                            <div class="goal-item" style="border-color: ${section.color}; background-color: ${section.color}15;">
+                                <p style="font-weight: 700; margin-bottom: 0.5rem;">${goal}</p>
+                                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
+                                    <svg style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                    <span class="stat-label">جاري العمل</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
         }
 
-        function printPDF() {
-            if (!currentClientData) return;
-            
-            // إنشاء نافذة طباعة جديدة
-            const printWindow = window.open('', '', 'width=800,height=600');
-            printWindow.document.write(`
-                <!DOCTYPE html>
-                <html dir="rtl">
-                <head>
-                    <meta charset="UTF-8">
-                    <title>طباعة - ${currentClientData.name}</title>
-                    <style>
-                        body {
-                            font-family: Arial, sans-serif;
-                            padding: 20px;
-                            direction: rtl;
-                        }
-                        @media print {
-                            body { padding: 0; }
-                        }
-                    </style>
-                </head>
-                <body>
-                    ${currentClientData.content}
-                </body>
-                </html>
-            `);
-            printWindow.document.close();
-            printWindow.focus();
-            
-            // انتظار تحميل المحتوى ثم طباعة
-            setTimeout(() => {
-                printWindow.print();
-                printWindow.close();
-            }, 250);
-        }
-
-        function downloadPDF() {
-            if (!currentClientData) return;
-            
-            // إنشاء محتوى HTML كامل
-            const htmlContent = `
-                <!DOCTYPE html>
-                <html dir="rtl">
-                <head>
-                    <meta charset="UTF-8">
-                    <title>${currentClientData.name}</title>
-                    <style>
-                        body {
-                            font-family: Arial, sans-serif;
-                            padding: 40px;
-                            direction: rtl;
-                            max-width: 800px;
-                            margin: 0 auto;
-                        }
-                    </style>
-                </head>
-                <body>
-                    ${currentClientData.content}
-                </body>
-                </html>
-            `;
-            
-            // إنشاء ملف وتحميله
-            const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
-            const url = window.URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `${currentClientData.name.replace(/\s+/g, '_')}.html`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            window.URL.revokeObjectURL(url);
-        }
-
-        // السماح بالضغط على Enter
-        document.getElementById('codeInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                checkCode();
-            }
-        });
+        // Initialize
+        updateDailySchedule();
     </script>
 </body>
 </html>
