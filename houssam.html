@@ -24,95 +24,106 @@
             color: #f3f4f6;
         }
 
-        /* Login Page Styles - Modern Design */
+        body.sleep-mode {
+            background-color: #0f0f1e;
+            filter: invert(0.1);
+        }
+
+        /* Login Page Styles - Modern Dark Design */
         .login-container {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             position: relative;
             overflow: hidden;
+            padding: 2rem;
         }
 
         .login-container::before {
             content: '';
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: rgba(255, 255, 255, 0.1);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
             border-radius: 50%;
-            top: -100px;
-            right: -100px;
-            animation: float 6s ease-in-out infinite;
+            top: -200px;
+            left: -200px;
+            animation: float 8s ease-in-out infinite;
         }
 
         .login-container::after {
             content: '';
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.05);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
             border-radius: 50%;
-            bottom: -50px;
-            left: -50px;
-            animation: float 8s ease-in-out infinite reverse;
+            bottom: -150px;
+            right: -150px;
+            animation: float 10s ease-in-out infinite reverse;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(30px); }
+            50% { transform: translateY(40px); }
         }
 
         .login-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 3rem;
-            border-radius: 2rem;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2), 0 0 60px rgba(102, 126, 234, 0.3);
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 52, 96, 0.8) 100%);
+            backdrop-filter: blur(20px);
+            padding: 3.5rem;
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
             width: 100%;
-            max-width: 420px;
+            max-width: 450px;
             position: relative;
             z-index: 10;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(16, 185, 129, 0.2);
         }
 
         .login-header {
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
         }
 
         .login-logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 1.5rem;
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 2rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .login-logo svg {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             color: white;
+            stroke-width: 1.5;
         }
 
         .login-header h1 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
             margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
+            color: white;
+            font-weight: 800;
+            letter-spacing: -1px;
         }
 
         .login-header p {
-            color: #6b7280;
-            font-size: 0.95rem;
+            color: #94a3b8;
+            font-size: 1rem;
             font-weight: 500;
         }
 
@@ -124,7 +135,7 @@
             display: block;
             margin-bottom: 0.7rem;
             font-weight: 600;
-            color: #374151;
+            color: #e0f2fe;
             font-size: 0.95rem;
         }
 
@@ -137,7 +148,7 @@
             right: 12px;
             top: 50%;
             transform: translateY(-50%);
-            color: #9ca3af;
+            color: #64748b;
             width: 20px;
             height: 20px;
             pointer-events: none;
@@ -146,90 +157,68 @@
         .form-group input {
             width: 100%;
             padding: 0.9rem 0.9rem 0.9rem 2.8rem;
-            border: 2px solid #e5e7eb;
-            border-radius: 0.9rem;
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            border-radius: 1rem;
             font-size: 1rem;
             font-family: 'Cairo', sans-serif;
             transition: all 0.3s ease;
-            background-color: #f9fafb;
+            background-color: rgba(15, 23, 42, 0.5);
+            color: white;
+        }
+
+        .form-group input::placeholder {
+            color: #64748b;
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: #667eea;
-            background-color: white;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-        }
-
-        .form-group input::placeholder {
-            color: #9ca3af;
+            border-color: #10b981;
+            background-color: rgba(15, 23, 42, 0.8);
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
         }
 
         .login-btn {
             width: 100%;
             padding: 1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
             border: none;
-            border-radius: 0.9rem;
-            font-size: 1rem;
+            border-radius: 1rem;
+            font-size: 1.05rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 0.5rem;
             font-family: 'Cairo', sans-serif;
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 15px 35px rgba(16, 185, 129, 0.3);
+            letter-spacing: 0.5px;
         }
 
         .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 45px rgba(16, 185, 129, 0.4);
         }
 
         .login-btn:active {
-            transform: translateY(0);
+            transform: translateY(-1px);
         }
 
         .login-error {
-            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
-            color: #991b1b;
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
             padding: 1rem;
-            border-radius: 0.9rem;
+            border-radius: 1rem;
             margin-bottom: 1.5rem;
             display: none;
             border-right: 4px solid #ef4444;
             font-weight: 500;
-            animation: slideDown 0.3s ease;
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
 
-        .demo-info {
-            background: rgba(102, 126, 234, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            padding: 1rem;
-            border-radius: 0.9rem;
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-            color: #4338ca;
-        }
 
-        .demo-info strong {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-
-        /* Main App Styles */
+        /* Main App */
         .navbar {
             background-color: white;
             border-bottom: 2px solid #e5e7eb;
@@ -321,10 +310,6 @@
             border-color: #ef4444;
         }
 
-        .btn-logout:hover {
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
-        }
-
         .nav-menu {
             max-width: 1280px;
             margin: 1rem auto 0;
@@ -345,15 +330,6 @@
             color: #6b7280;
             font-family: 'Cairo', sans-serif;
             transition: all 0.3s ease;
-        }
-
-        body.dark .nav-link {
-            color: #d1d5db;
-        }
-
-        .nav-link:hover {
-            background-color: #f3f4f6;
-            color: #111827;
         }
 
         .nav-link.active {
@@ -578,36 +554,147 @@
             font-weight: 700;
         }
 
-        .text-center {
+        .timer-display {
+            font-size: 3rem;
+            font-weight: 700;
             text-align: center;
+            color: #667eea;
+            margin: 2rem 0;
+            font-family: 'Courier New', monospace;
         }
 
-        .italic {
+        .timer-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .timer-btn {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 0.7rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .timer-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .timer-btn.stop {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+
+        .achievement-badge {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            padding: 1rem;
+            border-radius: 1rem;
+            text-align: center;
+            color: white;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+            animation: bounce 0.6s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .achievement-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .achievement-item {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            padding: 1rem;
+            border-radius: 0.8rem;
+            text-align: center;
+            border: 2px solid #d1d5db;
+        }
+
+        .achievement-item.unlocked {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-color: #fbbf24;
+        }
+
+        body.dark .achievement-item {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            border-color: #374151;
+        }
+
+        body.dark .achievement-item.unlocked {
+            background: linear-gradient(135deg, #78350f 0%, #92400e 100%);
+            border-color: #f59e0b;
+        }
+
+        .notes-textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.7rem;
+            font-family: 'Cairo', sans-serif;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 150px;
+            margin-bottom: 1rem;
+        }
+
+        body.dark .notes-textarea {
+            background-color: #374151;
+            border-color: #4b5563;
+            color: #f3f4f6;
+        }
+
+        .motivational-quote {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            text-align: center;
             font-style: italic;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
         }
 
-        .mb-2 {
-            margin-bottom: 0.5rem;
+        .chart-container {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
-        .mt-6 {
-            margin-top: 1.5rem;
+        body.dark .chart-container {
+            background-color: #1f2937;
         }
 
-        @media (max-width: 768px) {
-            .schedule-grid {
-                grid-template-columns: 1fr;
-            }
-            .navbar-title {
-                font-size: 1.25rem;
-            }
-            .login-card {
-                margin: 1rem;
-                padding: 2rem;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        body.dark .progress-bar {
+            background-color: #374151;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
         }
 
         .notification {
@@ -634,6 +721,39 @@
                 opacity: 1;
             }
         }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quick-action-btn {
+            padding: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .quick-action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .schedule-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -653,11 +773,11 @@
                 <p>أداة إدارة الوقت المتقدمة</p>
             </div>
             <div class="login-error" id="login-error"></div>
-            <form id="login-form">
+            <form id="login-form" style="width: 100%;">
                 <div class="form-group">
                     <label for="username">اسم المستخدم</label>
                     <div class="input-wrapper">
-                        <input type="text" id="username" placeholder="أدخل اسم المستخدم" required>
+                        <input type="text" id="username" placeholder="أدخل اسم المستخدم" required style="width: 100%;">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                             <circle cx="12" cy="7" r="4"></circle>
@@ -667,7 +787,7 @@
                 <div class="form-group">
                     <label for="password">كلمة المرور</label>
                     <div class="input-wrapper">
-                        <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
+                        <input type="password" id="password" placeholder="أدخل كلمة المرور" required style="width: 100%;">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                             <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
@@ -676,7 +796,6 @@
                 </div>
                 <button type="submit" class="login-btn">دخول الآن</button>
             </form>
-
         </div>
     </div>
 
@@ -702,6 +821,11 @@
                                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                             </svg>
                         </button>
+                        <button class="btn" onclick="toggleSleepMode()" title="وضع النوم">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                            </svg>
+                        </button>
                         <button class="btn btn-logout" onclick="handleLogout()">خروج</button>
                     </div>
                 </div>
@@ -711,13 +835,23 @@
                 <button class="nav-link" onclick="showPage(event, 'daily')">الجدول اليومي</button>
                 <button class="nav-link" onclick="showPage(event, 'weekly')">الجدول الأسبوعي</button>
                 <button class="nav-link" onclick="showPage(event, 'goals')">الأهداف السنوية</button>
+                <button class="nav-link" onclick="showPage(event, 'timer')">⏱️ مؤقت الدراسة</button>
+                <button class="nav-link" onclick="showPage(event, 'notes')">📝 ملاحظاتي</button>
+                <button class="nav-link" onclick="showPage(event, 'achievements')">🎖️ الإنجازات</button>
+                <button class="nav-link" onclick="showPage(event, 'report')">📊 التقارير</button>
                 <button class="nav-link" onclick="showPage(event, 'settings')">الإعدادات</button>
-                <button class="nav-link" onclick="showPage(event, 'about')">حول</button>
             </div>
         </nav>
 
         <!-- Home Page -->
         <div id="page-home" class="container">
+            <div class="motivational-quote" id="daily-quote"></div>
+
+            <h2>الإجراءات السريعة</h2>
+            <div class="quick-actions">
+
+            </div>
+
             <div class="card">
                 <h2>لوحة التحكم</h2>
                 <p class="stat-label italic">"النجاح هو مجموع الجهود الصغيرة المتكررة يوماً بعد يوم"</p>
@@ -739,25 +873,20 @@
                 <div class="stat-card">
                     <div class="stat-header">
                         <div>
-                            <p class="stat-label">ساعات الرياضة</p>
-                            <p class="stat-value" id="gym-hours">12</p>
+                            <p class="stat-label">جلسات مكتملة</p>
+                            <p class="stat-value" id="completed-sessions">0</p>
                         </div>
                         <svg class="icon-lg" style="width: 40px; height: 40px; color: #ef4444;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="m6.5 6.5 11 11"></path>
-                            <path d="m21 21-1-1"></path>
-                            <path d="m3 3 1 1"></path>
-                            <path d="m18 22 4-4"></path>
-                            <path d="m2 6 4-4"></path>
-                            <path d="m3 10 7-7"></path>
-                            <path d="m14 21 7-7"></path>
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
                         </svg>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-header">
                         <div>
-                            <p class="stat-label">المهام المنجزة</p>
-                            <p class="stat-value" id="completed-goals">0/0</p>
+                            <p class="stat-label">الأهداف المنجزة</p>
+                            <p class="stat-value" id="completed-goals">0/30</p>
                         </div>
                         <svg class="icon-lg" style="width: 40px; height: 40px; color: #10b981;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="20 6 9 17 4 12"></polyline>
@@ -767,12 +896,16 @@
                 <div class="stat-card">
                     <div class="stat-header">
                         <div>
-                            <p class="stat-label">إجمالي الساعات</p>
-                            <p class="stat-value" id="total-hours">75</p>
+                            <p class="stat-label">الإنجازات المفتوحة</p>
+                            <p class="stat-value" id="unlocked-achievements">0</p>
                         </div>
                         <svg class="icon-lg" style="width: 40px; height: 40px; color: #f59e0b;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
+                            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                            <path d="M4 22h16"></path>
+                            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
                         </svg>
                     </div>
                 </div>
@@ -829,27 +962,49 @@
 
         <!-- Goals Page -->
         <div id="page-goals" class="container hidden">
-            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
-                <svg style="width: 32px; height: 32px; color: #667eea;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <circle cx="12" cy="12" r="6"></circle>
-                    <circle cx="12" cy="12" r="2"></circle>
-                </svg>
-                <h2 style="margin-bottom: 0;">الأهداف السنوية</h2>
-            </div>
-
+            <h2>الأهداف السنوية</h2>
             <div class="goals-grid" id="goals-content"></div>
+        </div>
 
-            <div class="card text-center mt-6">
-                <svg style="width: 50px; height: 50px; color: #f59e0b; margin: 0 auto 0.75rem;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
-                    <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
-                    <path d="M4 22h16"></path>
-                    <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
-                    <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
-                    <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
-                </svg>
-                <p style="font-size: 1.125rem; font-weight: 600;">كل هدف تحققه يقربك من نسختك الأفضل. استمر والله معك!</p>
+        <!-- Timer Page -->
+        <div id="page-timer" class="container hidden">
+            <h2>⏱️ مؤقت الدراسة (Pomodoro)</h2>
+            <div class="card">
+                <div class="timer-display" id="timer-display">25:00</div>
+                <div class="timer-controls">
+                    <button class="timer-btn" onclick="startTimer()">ابدأ</button>
+                    <button class="timer-btn stop" onclick="stopTimer()">إيقاف</button>
+                    <button class="timer-btn" onclick="resetTimer()">إعادة تعيين</button>
+                </div>
+                <p style="text-align: center; color: #6b7280; margin-bottom: 1rem;">جلسات مكتملة: <strong id="sessions-count">0</strong></p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="timer-progress" style="width: 0%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notes Page -->
+        <div id="page-notes" class="container hidden">
+            <h2>📝 ملاحظاتي اليومية</h2>
+            <div class="card">
+                <label style="font-weight: 700; margin-bottom: 0.5rem; display: block;">ملاحظات اليوم</label>
+                <textarea class="notes-textarea" id="daily-notes" placeholder="اكتب ملاحظاتك هنا..."></textarea>
+                <button class="btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 0.75rem 1.5rem;" onclick="saveNotes()">💾 حفظ الملاحظات</button>
+            </div>
+        </div>
+
+        <!-- Achievements Page -->
+        <div id="page-achievements" class="container hidden">
+            <h2>🎖️ الإنجازات</h2>
+            <div id="achievements-container"></div>
+        </div>
+
+        <!-- Report Page -->
+        <div id="page-report" class="container hidden">
+            <h2>📊 التقارير الشهرية</h2>
+            <div class="card">
+                <h3>ملخص الإنجازات</h3>
+                <div id="monthly-report"></div>
             </div>
         </div>
 
@@ -859,25 +1014,9 @@
             <div class="card">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
                     <h3>الوضع الداكن / الفاتح</h3>
-                    <button class="btn" onclick="toggleTheme()" style="padding: 1rem;">
-                        <svg id="settings-theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                        </svg>
-                    </button>
+                    <button class="btn" onclick="toggleTheme()">تبديل</button>
                 </div>
-                <button class="btn" style="background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); color: white; border-color: #f59e0b; width: 100%; padding: 0.75rem;" onclick="resetData()">
-                    إعادة تعيين البيانات
-                </button>
-            </div>
-        </div>
-
-        <!-- About Page -->
-        <div id="page-about" class="container hidden">
-            <h2>حول</h2>
-            <div class="card">
-                <p style="font-size: 1.125rem; line-height: 1.75; margin-bottom: 1rem;">جدول حسام هو أداة لإدارة الوقت تساعدك على تنظيم حياتك اليومية والوصول لأهدافك</p>
-                <p style="color: #6b7280;">الإصدار: 2.0</p>
-                <p style="color: #6b7280;">آخر تحديث: 2025</p>
+                <button class="btn" style="background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); color: white; border: none; width: 100%; padding: 0.75rem;" onclick="resetData()">إعادة تعيين جميع البيانات</button>
             </div>
         </div>
     </div>
@@ -942,19 +1081,12 @@
             {
                 category: 'الأهداف الأكاديمية',
                 color: '#667eea',
-                goals: [
-                    'الحصول على شهادة البكالوريا بمعدل 17',
-                    'الالتحاق بجامعة الأمن السيبراني',
-                    'تعلم لغات البرمجة: Python و C# و C++'
-                ]
+                goals: ['الحصول على شهادة البكالوريا بمعدل 17', 'الالتحاق بجامعة الأمن السيبراني', 'تعلم لغات البرمجة: Python و C# و C++']
             },
             {
                 category: 'الأهداف الدينية',
                 color: '#10b981',
-                goals: [
-                    'الالتزام بالصلوات وعدم تضييع صلاة',
-                    'ختم القرآن الكريم 3 مرات على الأقل خلال السنة'
-                ]
+                goals: ['الالتزام بالصلوات وعدم تضييع صلاة', 'ختم القرآن الكريم 3 مرات على الأقل خلال السنة']
             },
             {
                 category: 'الأهداف المالية',
@@ -969,32 +1101,47 @@
             {
                 category: 'الأهداف الرياضية',
                 color: '#ef4444',
-                goals: [
-                    'تحقيق 100 عقلة متتالية',
-                    'تحقيق 300 بوش أب في مجموعة واحدة',
-                    'تحقيق 100 ديبس في مجموعة واحدة',
-                    'بناء عضلات أفضل من المستوى الحالي'
-                ]
+                goals: ['تحقيق 100 عقلة متتالية', 'تحقيق 300 بوش أب في مجموعة واحدة', 'تحقيق 100 ديبس في مجموعة واحدة', 'بناء عضلات أفضل من المستوى الحالي']
             },
             {
                 category: 'أهداف المشاريع',
                 color: '#6366f1',
-                goals: [
-                    'إنجاح قناة YouTube والوصول إلى 100 ألف مشترك',
-                    'النمو على Instagram و TikTok'
-                ]
+                goals: ['إنجاح قناة YouTube والوصول إلى 100 ألف مشترك', 'النمو على Instagram و TikTok']
             }
         ];
+
+        const achievementsList = [
+            { id: 'first_steps', title: '🚀 الخطوات الأولى', description: 'أكمل أول هدف', condition: () => Object.values(completedGoals).filter(v => v).length >= 1 },
+            { id: 'goal_getter', title: '🎯 صياد الأهداف', description: 'أكمل 5 أهداف', condition: () => Object.values(completedGoals).filter(v => v).length >= 5 },
+            { id: 'study_hard', title: '📚 الطالب المجتهد', description: 'أكمل 10 جلسات دراسة', condition: () => appData.sessions >= 10 },
+            { id: 'week_warrior', title: '⚡ محارب الأسبوع', description: 'ادرس 20 ساعة في الأسبوع', condition: () => true },
+            { id: 'perfectionist', title: '✨ الكمالي', description: 'أكمل جميع الأهداف', condition: () => Object.values(completedGoals).filter(v => v).length === goals.reduce((sum, s) => sum + s.goals.length, 0) },
+            { id: 'night_owl', title: '🌙 طائر الليل', description: 'ادرس بعد منتصف الليل', condition: () => appData.nightStudy }
+        ];
+
+        const quotes = [
+            '"النجاح هو مجموع الجهود الصغيرة المتكررة يوماً بعد يوم"',
+            '"لا تؤجل ما تستطيع فعله اليوم إلى الغد"',
+            '"الطريق إلى النجاح يبدأ بخطوة واحدة"',
+            '"التعليم هو أقوى سلاح يمكنك استخدامه لتغيير العالم"',
+            '"كل خطأ هو درس في طريقك للنجاح"'
+        ];
+
+        const ADMIN_USERNAME = 'houssam';
+        const ADMIN_PASSWORD = '28082008';
 
         let currentDay = 'sunday';
         let currentUser = null;
         let completedGoals = {};
+        let timerInterval = null;
+        let timeLeft = 25 * 60;
+        let appData = {
+            sessions: 0,
+            nightStudy: false,
+            notes: '',
+            lastPage: 'home'
+        };
 
-        // Admin credentials - Fixed
-        const ADMIN_USERNAME = 'sabrina';
-        const ADMIN_PASSWORD = '28082008';
-
-        // Initialize
         window.addEventListener('DOMContentLoaded', function() {
             loadUserData();
             const user = localStorage.getItem('hesham_user');
@@ -1017,9 +1164,6 @@
             const password = document.getElementById('password').value;
             const errorDiv = document.getElementById('login-error');
 
-            console.log('Username:', username, 'Password:', password);
-            console.log('Expected - Username:', ADMIN_USERNAME, 'Password:', ADMIN_PASSWORD);
-
             if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
                 currentUser = username;
                 localStorage.setItem('hesham_user', username);
@@ -1027,6 +1171,10 @@
                 showMainApp();
                 document.getElementById('display-username').textContent = username;
                 document.getElementById('login-form').reset();
+                const lastPage = appData.lastPage || 'home';
+                setTimeout(() => {
+                    document.querySelector(`[onclick*="'${lastPage}'"]`)?.click();
+                }, 100);
                 updateStats();
                 showNotification('مرحباً بك يا ' + username + '!');
             } else {
@@ -1047,6 +1195,9 @@
         function showMainApp() {
             document.getElementById('login-page').classList.add('hidden');
             document.getElementById('main-app').classList.remove('hidden');
+            updateDailyQuote();
+            updateStats();
+            updateAchievements();
         }
 
         function showLoginPage() {
@@ -1060,8 +1211,12 @@
                 currentUser = user;
                 const data = JSON.parse(localStorage.getItem('hesham_data_' + user) || '{}');
                 completedGoals = data.completedGoals || {};
+                appData = { ...appData, ...data };
                 if (data.theme === 'dark') {
                     document.body.classList.add('dark');
+                }
+                if (data.sleepMode) {
+                    document.body.classList.add('sleep-mode');
                 }
             }
         }
@@ -1071,7 +1226,9 @@
                 const data = {
                     user: currentUser,
                     theme: document.body.classList.contains('dark') ? 'dark' : 'light',
+                    sleepMode: document.body.classList.contains('sleep-mode'),
                     completedGoals: completedGoals,
+                    ...appData,
                     lastVisit: new Date().toISOString()
                 };
                 localStorage.setItem('hesham_data_' + currentUser, JSON.stringify(data));
@@ -1080,6 +1237,8 @@
 
         function showPage(e, page) {
             e.preventDefault();
+            appData.lastPage = page;
+            saveUserData();
             document.querySelectorAll('[id^="page-"]').forEach(p => p.classList.add('hidden'));
             document.getElementById('page-' + page).classList.remove('hidden');
             
@@ -1092,6 +1251,14 @@
                 updateWeeklySchedule();
             } else if (page === 'goals') {
                 updateGoals();
+            } else if (page === 'timer') {
+                updateTimerDisplay();
+            } else if (page === 'notes') {
+                loadNotes();
+            } else if (page === 'achievements') {
+                updateAchievements();
+            } else if (page === 'report') {
+                updateMonthlyReport();
             } else if (page === 'home') {
                 updateStats();
             }
@@ -1101,6 +1268,13 @@
             document.body.classList.toggle('dark');
             saveUserData();
             showNotification('تم تبديل المظهر');
+        }
+
+        function toggleSleepMode() {
+            document.body.classList.toggle('sleep-mode');
+            appData.sleepMode = document.body.classList.contains('sleep-mode');
+            saveUserData();
+            showNotification(appData.sleepMode ? '🌙 وضع النوم مُفعّل' : '☀️ وضع النوم معطّل');
         }
 
         function selectDay(e, day) {
@@ -1181,7 +1355,7 @@
                             const isCompleted = completedGoals[goalKey];
                             return `
                             <div class="goal-item ${isCompleted ? 'completed' : ''}" 
-                                 style="border-color: ${section.color}; background: linear-gradient(135deg, ${section.color}20 0%, ${section.color}08 100%); color: ${isCompleted ? '#999' : 'inherit'};"
+                                 style="border-color: ${section.color}; background: linear-gradient(135deg, ${section.color}20 0%, ${section.color}08 100%);"
                                  onclick="toggleGoal('${goalKey}', event)">
                                 <p style="font-weight: 700; margin-bottom: 0.5rem;">${goal}</p>
                                 <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
@@ -1203,7 +1377,129 @@
             completedGoals[goalKey] = !completedGoals[goalKey];
             saveUserData();
             updateGoals();
+            updateStats();
             showNotification(completedGoals[goalKey] ? '✅ تم تحديث الهدف' : '↩️ تم حذف علامة الهدف');
+        }
+
+        function startTimer() {
+            if (timerInterval) return;
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    playTimerSound();
+                    appData.sessions++;
+                    saveUserData();
+                    updateStats();
+                    showNotification('🎉 تم إكمال جلسة دراسة واحدة!');
+                    timeLeft = 25 * 60;
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        function resetTimer() {
+            stopTimer();
+            timeLeft = 25 * 60;
+            updateTimerDisplay();
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer-display').textContent = 
+                String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+            
+            const totalSeconds = 25 * 60;
+            const progress = ((totalSeconds - timeLeft) / totalSeconds) * 100;
+            const progressBar = document.getElementById('timer-progress');
+            if (progressBar) progressBar.style.width = progress + '%';
+        }
+
+        function playTimerSound() {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            oscillator.frequency.value = 800;
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.5);
+        }
+
+        function saveNotes() {
+            appData.notes = document.getElementById('daily-notes').value;
+            saveUserData();
+            showNotification('✅ تم حفظ الملاحظات');
+        }
+
+        function loadNotes() {
+            document.getElementById('daily-notes').value = appData.notes || '';
+        }
+
+        function updateAchievements() {
+            const container = document.getElementById('achievements-container');
+            let unlockedCount = 0;
+            
+            container.innerHTML = achievementsList.map(achievement => {
+                const isUnlocked = achievement.condition();
+                if (isUnlocked) unlockedCount++;
+                return `
+                    <div class="achievement-item ${isUnlocked ? 'unlocked' : ''}">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">${achievement.title.split(' ')[0]}</div>
+                        <p style="font-weight: 700; margin-bottom: 0.25rem;">${achievement.title}</p>
+                        <p style="font-size: 0.875rem; color: #6b7280;">${achievement.description}</p>
+                        <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #999;">${isUnlocked ? '✅ تم الفتح' : '🔒 مغلق'}</p>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('unlocked-achievements').textContent = unlockedCount;
+        }
+
+        function updateMonthlyReport() {
+            const reportDiv = document.getElementById('monthly-report');
+            const completedCount = Object.values(completedGoals).filter(v => v).length;
+            const totalGoals = goals.reduce((sum, s) => sum + s.goals.length, 0);
+            const completionRate = ((completedCount / totalGoals) * 100).toFixed(1);
+
+            reportDiv.innerHTML = `
+                <div style="margin-bottom: 2rem;">
+                    <p style="margin-bottom: 1rem;">نسبة إكمال الأهداف: <strong>${completionRate}%</strong></p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${completionRate}%;"></div>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem; border-radius: 0.8rem; text-align: center;">
+                        <p style="font-size: 0.875rem; margin-bottom: 0.25rem;">جلسات الدراسة</p>
+                        <p style="font-size: 2rem; font-weight: 700;">${appData.sessions}</p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); color: white; padding: 1rem; border-radius: 0.8rem; text-align: center;">
+                        <p style="font-size: 0.875rem; margin-bottom: 0.25rem;">الأهداف المكتملة</p>
+                        <p style="font-size: 2rem; font-weight: 700;">${completedCount}/${totalGoals}</p>
+                    </div>
+                    <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1rem; border-radius: 0.8rem; text-align: center;">
+                        <p style="font-size: 0.875rem; margin-bottom: 0.25rem;">الإنجازات المفتوحة</p>
+                        <p style="font-size: 2rem; font-weight: 700;">${achievementsList.filter(a => a.condition()).length}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function updateDailyQuote() {
+            const quote = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById('daily-quote').textContent = quote;
         }
 
         function updateStats() {
@@ -1212,20 +1508,32 @@
             );
             
             document.getElementById('study-hours').textContent = totalStudyHours;
-            document.getElementById('gym-hours').textContent = '12';
-            document.getElementById('total-hours').textContent = totalStudyHours + 12;
+            document.getElementById('completed-sessions').textContent = appData.sessions;
             
             const completedCount = Object.values(completedGoals).filter(v => v).length;
             const totalGoals = goals.reduce((sum, section) => sum + section.goals.length, 0);
             document.getElementById('completed-goals').textContent = completedCount + '/' + totalGoals;
+            
+            const unlockedAchievements = achievementsList.filter(a => a.condition()).length;
+            document.getElementById('unlocked-achievements').textContent = unlockedAchievements;
         }
 
         function resetData() {
             if (confirm('هل أنت متأكد من رغبتك في مسح جميع البيانات؟')) {
                 completedGoals = {};
+                appData = {
+                    sessions: 0,
+                    nightStudy: false,
+                    notes: '',
+                    lastPage: 'home'
+                };
+                timeLeft = 25 * 60;
+                stopTimer();
                 saveUserData();
-                updateGoals();
                 updateStats();
+                updateGoals();
+                updateAchievements();
+                loadNotes();
                 showNotification('✨ تم إعادة تعيين البيانات');
             }
         }
@@ -1236,6 +1544,34 @@
             notification.textContent = message;
             document.body.appendChild(notification);
             setTimeout(() => notification.remove(), 3000);
+        }
+
+        function quickNavigate(page) {
+            appData.lastPage = page;
+            saveUserData();
+            document.querySelectorAll('[id^="page-"]').forEach(p => p.classList.add('hidden'));
+            document.getElementById('page-' + page).classList.remove('hidden');
+            
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            document.querySelector(`[onclick*="'${page}'"]`)?.classList.add('active');
+
+            if (page === 'daily') {
+                updateDailySchedule();
+            } else if (page === 'weekly') {
+                updateWeeklySchedule();
+            } else if (page === 'goals') {
+                updateGoals();
+            } else if (page === 'timer') {
+                updateTimerDisplay();
+            } else if (page === 'notes') {
+                loadNotes();
+            } else if (page === 'achievements') {
+                updateAchievements();
+            } else if (page === 'report') {
+                updateMonthlyReport();
+            } else if (page === 'home') {
+                updateStats();
+            }
         }
     </script>
 </body>
