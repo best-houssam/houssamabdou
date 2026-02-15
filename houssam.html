@@ -1,1763 +1,942 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جدول حسام - النسخة المستقبلية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #00f0ff;
-            --secondary: #ff00ff;
-            --accent: #00ff88;
-            --bg-dark: #0a0a0f;
-            --bg-card: rgba(15, 15, 25, 0.7);
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0b0;
-            --glow: 0 0 20px rgba(0, 240, 255, 0.5);
-        }
-
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a0a2e 50%, #0a0a0f 100%);
-            color: var(--text-primary);
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(0, 240, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(0, 255, 136, 0.08) 0%, transparent 50%);
-            animation: bgShift 15s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        @keyframes bgShift {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.1); }
-        }
-
-        /* Glowing Grid Lines */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
-            z-index: 0;
-            animation: gridMove 20s linear infinite;
-        }
-
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-
-        /* Glassmorphism Card */
-        .glass-card {
-            background: rgba(15, 15, 30, 0.6);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            border-radius: 20px;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(0, 240, 255, 0.1), 
-                transparent);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        /* Login Container - Futuristic Design */
-        .login-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            position: relative;
-            z-index: 1;
-            padding: 2rem;
-        }
-
-        /* Floating Particles */
-        .particle {
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: float-particle 20s linear infinite;
-            box-shadow: 0 0 10px var(--primary);
-        }
-
-        @keyframes float-particle {
-            0% {
-                transform: translateY(100vh) translateX(0) scale(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100px) scale(1);
-                opacity: 0;
-            }
-        }
-
-        .login-card {
-            background: rgba(10, 10, 20, 0.8);
-            backdrop-filter: blur(30px);
-            padding: 3rem 2.5rem;
-            border-radius: 30px;
-            width: 100%;
-            max-width: 480px;
-            position: relative;
-            border: 2px solid;
-            border-image: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent)) 1;
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.5),
-                0 0 40px rgba(0, 240, 255, 0.2);
-            animation: cardEntrance 0.8s ease-out;
-        }
-
-        @keyframes cardEntrance {
-            from {
-                opacity: 0;
-                transform: translateY(50px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .login-logo {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 2rem;
-            box-shadow: 
-                0 0 30px rgba(0, 240, 255, 0.5),
-                0 0 60px rgba(255, 0, 255, 0.3);
-            animation: logoPulse 3s ease-in-out infinite;
-            position: relative;
-        }
-
-        .login-logo::before {
-            content: '';
-            position: absolute;
-            inset: -5px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 28px;
-            opacity: 0.3;
-            filter: blur(10px);
-            animation: logoPulse 3s ease-in-out infinite;
-        }
-
-        @keyframes logoPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .login-logo svg {
-            width: 60px;
-            height: 60px;
-            color: white;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
-            position: relative;
-            z-index: 1;
-        }
-
-        .login-header h1 {
-            font-family: 'Orbitron', 'Cairo', sans-serif;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
-        }
-
-        .login-header p {
-            color: var(--text-secondary);
-            text-align: center;
-            font-size: 1rem;
-            margin-bottom: 2.5rem;
-            font-weight: 500;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.75rem;
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .input-wrapper {
-            position: relative;
-        }
-
-        .input-wrapper svg {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--primary);
-            width: 20px;
-            height: 20px;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 1rem 1rem 1rem 3rem;
-            border: 2px solid rgba(0, 240, 255, 0.3);
-            border-radius: 15px;
-            font-size: 1rem;
-            font-family: 'Cairo', sans-serif;
-            transition: all 0.3s ease;
-            background: rgba(0, 20, 40, 0.5);
-            color: white;
-            font-weight: 500;
-        }
-
-        .form-group input::placeholder {
-            color: rgba(160, 160, 176, 0.5);
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: rgba(0, 30, 60, 0.6);
-            box-shadow: 
-                0 0 0 4px rgba(0, 240, 255, 0.1),
-                0 0 20px rgba(0, 240, 255, 0.3);
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 1.2rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            border-radius: 15px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-            font-family: 'Orbitron', 'Cairo', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            box-shadow: 
-                0 10px 30px rgba(0, 240, 255, 0.3),
-                0 0 40px rgba(255, 0, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .login-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .login-btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .login-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 
-                0 15px 40px rgba(0, 240, 255, 0.4),
-                0 0 60px rgba(255, 0, 255, 0.3);
-        }
-
-        .login-error {
-            background: rgba(255, 0, 100, 0.2);
-            color: #ff5588;
-            padding: 1rem;
-            border-radius: 15px;
-            margin-bottom: 1.5rem;
-            display: none;
-            border: 1px solid rgba(255, 0, 100, 0.4);
-            font-weight: 500;
-            backdrop-filter: blur(10px);
-        }
-
-        /* Navbar - Futuristic */
-        .navbar {
-            background: rgba(10, 10, 20, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 2px solid rgba(0, 240, 255, 0.2);
-            padding: 1rem 1.5rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .navbar-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .navbar-brand svg {
-            color: var(--primary);
-            width: 36px;
-            height: 36px;
-            filter: drop-shadow(0 0 10px var(--primary));
-        }
-
-        .navbar-title {
-            font-family: 'Orbitron', 'Cairo', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 2px;
-        }
-
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .username-display {
-            font-weight: 700;
-            color: var(--primary);
-            font-family: 'Orbitron', 'Cairo', sans-serif;
-            letter-spacing: 1px;
-        }
-
-        .navbar-controls {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .btn {
-            padding: 0.6rem 1.2rem;
-            border-radius: 12px;
-            border: 2px solid rgba(0, 240, 255, 0.3);
-            background: rgba(0, 20, 40, 0.5);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-family: 'Cairo', sans-serif;
-            color: var(--primary);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0, 240, 255, 0.3);
-            border-color: var(--primary);
-            background: rgba(0, 40, 80, 0.6);
-        }
-
-        .btn-logout {
-            background: linear-gradient(135deg, #ff0055, #ff0099);
-            color: white;
-            border-color: transparent;
-        }
-
-        .btn-logout:hover {
-            box-shadow: 0 5px 20px rgba(255, 0, 85, 0.4);
-        }
-
-        .nav-menu {
-            max-width: 1400px;
-            margin: 1rem auto 0;
-            display: flex;
-            gap: 0.5rem;
-            overflow-x: auto;
-            padding: 0 1.5rem 0.5rem;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary) transparent;
-        }
-
-        .nav-menu::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .nav-menu::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .nav-menu::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 3px;
-        }
-
-        .nav-link {
-            padding: 0.7rem 1.4rem;
-            border-radius: 12px;
-            border: 2px solid transparent;
-            background: transparent;
-            cursor: pointer;
-            white-space: nowrap;
-            font-weight: 600;
-            color: var(--text-secondary);
-            font-family: 'Cairo', sans-serif;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .nav-link span {
-            position: relative;
-            z-index: 1;
-        }
-
-        .nav-link.active {
-            color: white;
-            border-color: transparent;
-        }
-
-        .nav-link.active::before {
-            opacity: 1;
-        }
-
-        .nav-link:hover:not(.active) {
-            color: var(--primary);
-            border-color: rgba(0, 240, 255, 0.3);
-            background: rgba(0, 240, 255, 0.05);
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .card {
-            background: rgba(15, 15, 30, 0.6);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            margin-bottom: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(0, 240, 255, 0.1), 
-                transparent);
-            animation: shimmer 4s infinite;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: rgba(10, 10, 25, 0.7);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, 
-                rgba(0, 240, 255, 0.1) 0%, 
-                transparent 100%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 
-                0 12px 40px rgba(0, 0, 0, 0.4),
-                0 0 30px rgba(0, 240, 255, 0.2);
-        }
-
-        .stat-card:hover::before {
-            opacity: 1;
-        }
-
-        .stat-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .stat-value {
-            font-family: 'Orbitron', 'Cairo', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
-        }
-
-        .icon-lg {
-            width: 50px;
-            height: 50px;
-            filter: drop-shadow(0 0 10px currentColor);
-        }
-
-        .goals-grid {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .goal-category {
-            background: rgba(10, 10, 25, 0.7);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-        }
-
-        .goal-items {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .goal-item {
-            padding: 1.5rem;
-            border-radius: 15px;
-            border: 2px solid;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .goal-item::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, 
-                transparent 0%, 
-                rgba(255, 255, 255, 0.05) 100%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .goal-item:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .goal-item:hover::before {
-            opacity: 1;
-        }
-
-        .goal-item.completed {
-            opacity: 0.5;
-        }
-
-        .goal-item.completed p {
-            text-decoration: line-through;
-        }
-
-        .day-buttons {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-            overflow-x: auto;
-            padding-bottom: 0.5rem;
-        }
-
-        .day-btn {
-            padding: 0.8rem 1.5rem;
-            border-radius: 12px;
-            border: 2px solid rgba(0, 240, 255, 0.3);
-            background: rgba(0, 20, 40, 0.5);
-            cursor: pointer;
-            white-space: nowrap;
-            font-weight: 600;
-            font-family: 'Cairo', sans-serif;
-            transition: all 0.3s ease;
-            color: var(--text-secondary);
-            backdrop-filter: blur(10px);
-        }
-
-        .day-btn.active {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 5px 20px rgba(0, 240, 255, 0.3);
-        }
-
-        .day-btn:hover:not(.active) {
-            border-color: var(--primary);
-            color: var(--primary);
-            background: rgba(0, 40, 80, 0.6);
-        }
-
-        .schedule-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 2rem;
-        }
-
-        .schedule-card {
-            background: rgba(10, 10, 25, 0.7);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-        }
-
-        .schedule-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-family: 'Orbitron', 'Cairo', sans-serif;
-        }
-
-        .subject-item {
-            padding: 1.2rem;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            border-right: 4px solid var(--primary);
-            background: linear-gradient(135deg, 
-                rgba(0, 240, 255, 0.1) 0%, 
-                rgba(0, 120, 255, 0.05) 100%);
-            transition: all 0.3s ease;
-        }
-
-        .subject-item:hover {
-            transform: translateX(-5px);
-            box-shadow: 0 5px 20px rgba(0, 240, 255, 0.2);
-        }
-
-        .gym-item {
-            padding: 1.2rem;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            border-right: 4px solid #ff0055;
-            background: linear-gradient(135deg, 
-                rgba(255, 0, 85, 0.1) 0%, 
-                rgba(255, 0, 170, 0.05) 100%);
-            transition: all 0.3s ease;
-        }
-
-        .gym-item:hover {
-            transform: translateX(-5px);
-            box-shadow: 0 5px 20px rgba(255, 0, 85, 0.2);
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        h2 {
-            font-family: 'Orbitron', 'Cairo', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 2px;
-        }
-
-        h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            font-family: 'Orbitron', 'Cairo', sans-serif;
-        }
-
-        .timer-display {
-            font-family: 'Orbitron', monospace;
-            font-size: 4rem;
-            font-weight: 800;
-            text-align: center;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin: 3rem 0;
-            text-shadow: 0 0 40px rgba(0, 240, 255, 0.5);
-        }
-
-        .timer-controls {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
-
-        .timer-btn {
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-family: 'Orbitron', 'Cairo', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 5px 20px rgba(0, 240, 255, 0.3);
-        }
-
-        .timer-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(0, 240, 255, 0.4);
-        }
-
-        .timer-btn.stop {
-            background: linear-gradient(135deg, #ff0055, #ff0099);
-        }
-
-        .achievement-badge {
-            background: linear-gradient(135deg, #ffaa00, #ff6600);
-            padding: 1.5rem;
-            border-radius: 15px;
-            text-align: center;
-            color: white;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 10px 30px rgba(255, 170, 0, 0.3);
-            animation: bounce 0.6s ease;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        .achievement-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .achievement-item {
-            background: rgba(10, 10, 25, 0.7);
-            backdrop-filter: blur(15px);
-            padding: 1.5rem;
-            border-radius: 15px;
-            text-align: center;
-            border: 2px solid rgba(100, 100, 120, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .achievement-item.unlocked {
-            background: linear-gradient(135deg, 
-                rgba(255, 170, 0, 0.2) 0%, 
-                rgba(255, 102, 0, 0.1) 100%);
-            border-color: #ffaa00;
-            box-shadow: 0 0 20px rgba(255, 170, 0, 0.3);
-        }
-
-        .achievement-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .notes-textarea {
-            width: 100%;
-            padding: 1.2rem;
-            border: 2px solid rgba(0, 240, 255, 0.3);
-            border-radius: 12px;
-            font-family: 'Cairo', sans-serif;
-            font-size: 1rem;
-            resize: vertical;
-            min-height: 200px;
-            margin-bottom: 1rem;
-            background: rgba(0, 20, 40, 0.5);
-            color: var(--text-primary);
-            backdrop-filter: blur(10px);
-        }
-
-        .notes-textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
-        }
-
-        .motivational-quote {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            font-style: italic;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.3);
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 12px;
-            background-color: rgba(50, 50, 70, 0.5);
-            border-radius: 10px;
-            overflow: hidden;
-            margin-top: 1rem;
-            border: 1px solid rgba(0, 240, 255, 0.2);
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transition: width 0.3s ease;
-            box-shadow: 0 0 10px var(--primary);
-        }
-
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 1.2rem 2rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.4);
-            z-index: 1000;
-            animation: slideIn 0.3s ease;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(400px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .quick-actions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .quick-action-btn {
-            padding: 1.2rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1rem;
-            font-family: 'Orbitron', 'Cairo', sans-serif;
-            box-shadow: 0 5px 20px rgba(0, 240, 255, 0.3);
-        }
-
-        .quick-action-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(0, 240, 255, 0.4);
-        }
-
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(10, 10, 20, 0.5);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 5px;
-        }
-
-        @media (max-width: 768px) {
-            .schedule-grid {
-                grid-template-columns: 1fr;
-            }
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            .timer-display {
-                font-size: 3rem;
-            }
-            h2 {
-                font-size: 1.8rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>برنامج الباكالوريا — تقني رياضي 🎯</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #F5A623;
+    --gold-light: #FFD166;
+    --dark: #0A0E1A;
+    --dark2: #111827;
+    --dark3: #1C2333;
+    --card: #161D2E;
+    --blue: #3B82F6;
+    --blue-light: #60A5FA;
+    --green: #10B981;
+    --red: #EF4444;
+    --purple: #8B5CF6;
+    --cyan: #06B6D4;
+    --orange: #F97316;
+    --text: #E2E8F0;
+    --text-muted: #94A3B8;
+    --border: rgba(255,255,255,0.07);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Cairo', 'Tajawal', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+      radial-gradient(ellipse at 15% 20%, rgba(245,166,35,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 80%, rgba(59,130,246,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(16,185,129,0.04) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* HEADER */
+  .hero {
+    text-align: center;
+    padding: 50px 20px 40px;
+    position: relative;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(245,166,35,0.15), rgba(245,166,35,0.05));
+    border: 1px solid rgba(245,166,35,0.3);
+    color: var(--gold);
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    animation: pulse-glow 2s infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 10px rgba(245,166,35,0.2); }
+    50% { box-shadow: 0 0 25px rgba(245,166,35,0.4); }
+  }
+
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #FFFFFF 0%, var(--gold) 50%, var(--gold-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    color: var(--text-muted);
+    font-size: 16px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* STATS ROW */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin: 30px 0;
+  }
+
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(245,166,35,0.3);
+  }
+
+  .stat-card .number {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--gold);
+    display: block;
+  }
+
+  .stat-card .label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 40px 0 20px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to left, transparent, var(--border));
+  }
+
+  .section-title .icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  /* PRIORITY TABLE */
+  .priority-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+
+  .subject-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .subject-card::before {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 4px;
+    border-radius: 0 16px 16px 0;
+  }
+
+  .subject-card.primary::before { background: var(--gold); }
+  .subject-card.secondary::before { background: var(--blue); }
+  .subject-card.tertiary::before { background: var(--purple); }
+
+  .subject-card:hover {
+    transform: translateX(-4px);
+    border-color: rgba(255,255,255,0.15);
+  }
+
+  .subject-emoji {
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+
+  .subject-info { flex: 1; }
+  .subject-name { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .subject-meta { font-size: 12px; color: var(--text-muted); }
+
+  .subject-hours {
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .hours-num {
+    font-size: 22px;
+    font-weight: 900;
+    display: block;
+    line-height: 1;
+  }
+
+  .hours-label { font-size: 10px; color: var(--text-muted); }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 6px;
+  }
+
+  .badge.gold { background: rgba(245,166,35,0.15); color: var(--gold); }
+  .badge.blue { background: rgba(59,130,246,0.15); color: var(--blue-light); }
+  .badge.purple { background: rgba(139,92,246,0.15); color: #A78BFA; }
+
+  /* WEEKLY SCHEDULE */
+  .week-table {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 30px;
+  }
+
+  .week-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .week-table th {
+    background: rgba(245,166,35,0.08);
+    padding: 14px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .week-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .week-table tr:last-child td { border-bottom: none; }
+
+  .week-table tr:hover td {
+    background: rgba(255,255,255,0.02);
+  }
+
+  .day-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .session-pill {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 3px;
+  }
+
+  .s-math { background: rgba(245,166,35,0.15); color: var(--gold); border: 1px solid rgba(245,166,35,0.2); }
+  .s-phys { background: rgba(6,182,212,0.12); color: var(--cyan); border: 1px solid rgba(6,182,212,0.2); }
+  .s-info { background: rgba(139,92,246,0.12); color: #A78BFA; border: 1px solid rgba(139,92,246,0.2); }
+  .s-lang { background: rgba(59,130,246,0.12); color: var(--blue-light); border: 1px solid rgba(59,130,246,0.2); }
+  .s-hum { background: rgba(16,185,129,0.12); color: var(--green); border: 1px solid rgba(16,185,129,0.2); }
+  .s-rest { background: rgba(239,68,68,0.12); color: #FCA5A5; border: 1px solid rgba(239,68,68,0.2); }
+  .s-rev { background: rgba(249,115,22,0.12); color: var(--orange); border: 1px solid rgba(249,115,22,0.2); }
+
+  /* DAILY SCHEDULE */
+  .daily-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+
+  @media (max-width: 700px) {
+    .daily-grid { grid-template-columns: 1fr; }
+  }
+
+  .session-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .session-header {
+    padding: 14px 18px;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .session-header.morning { background: linear-gradient(135deg, rgba(245,166,35,0.15), rgba(245,166,35,0.05)); color: var(--gold); }
+  .session-header.afternoon { background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(59,130,246,0.05)); color: var(--blue-light); }
+  .session-header.evening { background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(139,92,246,0.05)); color: #A78BFA; }
+
+  .session-items { padding: 14px 18px; }
+
+  .time-slot {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .time-slot:last-child { border-bottom: none; }
+
+  .time { 
+    font-size: 11px; 
+    color: var(--text-muted); 
+    min-width: 85px;
+    font-weight: 600;
+    padding-top: 2px;
+  }
+
+  .activity { font-size: 13px; line-height: 1.5; }
+  .activity strong { color: var(--gold); }
+
+  /* PHASES */
+  .phases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+
+  .phase-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .phase-card::after {
+    content: attr(data-phase);
+    position: absolute;
+    left: -10px;
+    top: -20px;
+    font-size: 80px;
+    font-weight: 900;
+    opacity: 0.04;
+    color: white;
+    line-height: 1;
+  }
+
+  .phase-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+
+  .phase-1 .phase-num { background: rgba(16,185,129,0.2); color: var(--green); }
+  .phase-2 .phase-num { background: rgba(245,166,35,0.2); color: var(--gold); }
+  .phase-3 .phase-num { background: rgba(239,68,68,0.2); color: #EF4444; }
+
+  .phase-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .phase-days { font-size: 12px; color: var(--gold); margin-bottom: 14px; font-weight: 600; }
+
+  .phase-list { list-style: none; }
+  .phase-list li {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding: 5px 0;
+    display: flex;
+    gap: 8px;
+  }
+
+  .phase-list li::before { content: '→'; color: var(--gold); flex-shrink: 0; }
+
+  /* TIPS */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+
+  .tip-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+    animation: fadeUp 0.5s ease both;
+    transition: transform 0.3s;
+  }
+
+  .tip-card:hover { transform: translateY(-4px); }
+
+  .tip-icon { font-size: 28px; margin-bottom: 10px; }
+  .tip-title { font-weight: 700; font-size: 14px; margin-bottom: 6px; color: var(--gold); }
+  .tip-text { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+
+  /* MOTIVATION FOOTER */
+  .motivation {
+    background: linear-gradient(135deg, rgba(245,166,35,0.08), rgba(59,130,246,0.05));
+    border: 1px solid rgba(245,166,35,0.2);
+    border-radius: 20px;
+    padding: 35px;
+    text-align: center;
+    margin-top: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .motivation::before {
+    content: '🎯';
+    position: absolute;
+    font-size: 120px;
+    opacity: 0.05;
+    right: -20px;
+    top: -20px;
+    pointer-events: none;
+  }
+
+  .motivation h2 {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .motivation p {
+    color: var(--text-muted);
+    font-size: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .subject-card:nth-child(1) { animation-delay: 0.05s; }
+  .subject-card:nth-child(2) { animation-delay: 0.1s; }
+  .subject-card:nth-child(3) { animation-delay: 0.15s; }
+  .subject-card:nth-child(4) { animation-delay: 0.2s; }
+  .subject-card:nth-child(5) { animation-delay: 0.25s; }
+  .subject-card:nth-child(6) { animation-delay: 0.3s; }
+  .subject-card:nth-child(7) { animation-delay: 0.35s; }
+  .subject-card:nth-child(8) { animation-delay: 0.4s; }
+
+  /* PROGRESS BAR */
+  .progress-bar-wrap {
+    background: rgba(255,255,255,0.05);
+    border-radius: 50px;
+    height: 8px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+
+  .progress-bar {
+    height: 100%;
+    border-radius: 50px;
+    transition: width 1s ease;
+  }
+
+  /* responsive */
+  @media (max-width: 600px) {
+    .priority-grid { grid-template-columns: 1fr; }
+    .phases-grid { grid-template-columns: 1fr; }
+    .week-table { overflow-x: auto; display: block; }
+    .week-table table { min-width: 600px; }
+  }
+</style>
 </head>
 <body>
-    <!-- Floating Particles -->
-    <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
-    <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
-    <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
-    <div class="particle" style="left: 40%; animation-delay: 6s;"></div>
-    <div class="particle" style="left: 50%; animation-delay: 8s;"></div>
-    <div class="particle" style="left: 60%; animation-delay: 10s;"></div>
-    <div class="particle" style="left: 70%; animation-delay: 12s;"></div>
-    <div class="particle" style="left: 80%; animation-delay: 14s;"></div>
-    <div class="particle" style="left: 90%; animation-delay: 16s;"></div>
 
-    <!-- Login Page -->
-    <div id="login-page" class="login-container">
-        <div class="login-card">
-            <div class="login-header">
-                <div class="login-logo">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                    </svg>
-                </div>
-                <h1>جدول حسام</h1>
-                <p>نظام إدارة الوقت المستقبلي</p>
-            </div>
-            <div class="login-error" id="login-error"></div>
-            <form id="login-form" style="width: 100%;">
-                <div class="form-group">
-                    <label for="username">اسم المستخدم</label>
-                    <div class="input-wrapper">
-                        <input type="text" id="username" placeholder="أدخل اسم المستخدم" required style="width: 100%;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
-                        </svg>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password">كلمة المرور</label>
-                    <div class="input-wrapper">
-                        <input type="password" id="password" placeholder="أدخل كلمة المرور" required style="width: 100%;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                        </svg>
-                    </div>
-                </div>
-                <button type="submit" class="login-btn">دخول</button>
-            </form>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">⚡ تقني رياضي — بكالوريا 2025</div>
+    <h1>برنامجك للـ 19/20</h1>
+    <p>100 يوم منظّم · 9 ساعات يومياً · طريقة علمية مثبتة</p>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="number">100</span>
+      <span class="label">⏳ يوم متبقي</span>
+    </div>
+    <div class="stat-card">
+      <span class="number">9</span>
+      <span class="label">🕐 ساعة / يوم</span>
+    </div>
+    <div class="stat-card">
+      <span class="number">900</span>
+      <span class="label">⚡ ساعة إجمالي</span>
+    </div>
+    <div class="stat-card">
+      <span class="number">3</span>
+      <span class="label">📚 جلسات / يوم</span>
+    </div>
+    <div class="stat-card">
+      <span class="number">19</span>
+      <span class="label">🎯 هدفك / 20</span>
+    </div>
+  </div>
+
+  <!-- SUBJECT PRIORITIES -->
+  <div class="section-title">
+    <div class="icon" style="background: rgba(245,166,35,0.15);">📊</div>
+    توزيع الساعات الأسبوعية حسب المعاملات
+  </div>
+
+  <div class="priority-grid">
+
+    <div class="subject-card primary">
+      <div class="subject-emoji">🔢</div>
+      <div class="subject-info">
+        <div class="subject-name">رياضيات</div>
+        <div class="subject-meta">معامل 9 — تحليل · جبر · احتمالات</div>
+        <span class="badge gold">أولوية قصوى</span>
+      </div>
+      <div class="subject-hours">
+        <span class="hours-num" style="color: var(--gold);">18</span>
+        <span class="hours-label">ساعة/أسبوع</span>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" style="width:90%; background: var(--gold);"></div>
         </div>
+      </div>
     </div>
 
-    <!-- Main App -->
-    <div id="main-app" class="hidden">
-        <!-- Navbar -->
-        <nav class="navbar">
-            <div class="navbar-container">
-                <div class="navbar-brand">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                    </svg>
-                    <h1 class="navbar-title">HOUSSAM</h1>
-                </div>
-                <div class="user-info">
-                    <span class="username-display" id="display-username"></span>
-                    <div class="navbar-controls">
-                        <button class="btn btn-logout" onclick="handleLogout()">خروج</button>
-                    </div>
-                </div>
-            </div>
-            <div class="nav-menu">
-                <button class="nav-link active" onclick="showPage(event, 'home')"><span>الرئيسية</span></button>
-                <button class="nav-link" onclick="showPage(event, 'daily')"><span>الجدول اليومي</span></button>
-                <button class="nav-link" onclick="showPage(event, 'weekly')"><span>الجدول الأسبوعي</span></button>
-                <button class="nav-link" onclick="showPage(event, 'goals')"><span>الأهداف السنوية</span></button>
-                <button class="nav-link" onclick="showPage(event, 'timer')"><span>⏱️ مؤقت الدراسة</span></button>
-                <button class="nav-link" onclick="showPage(event, 'notes')"><span>📝 ملاحظاتي</span></button>
-                <button class="nav-link" onclick="showPage(event, 'achievements')"><span>🎖️ الإنجازات</span></button>
-                <button class="nav-link" onclick="showPage(event, 'report')"><span>📊 التقارير</span></button>
-            </div>
-        </nav>
-
-        <!-- Home Page -->
-        <div id="page-home" class="container">
-            <div class="motivational-quote" id="daily-quote"></div>
-
-            <div class="card">
-                <h2>لوحة التحكم</h2>
-                <p class="stat-label" style="font-style: italic; text-align: center;">"النجاح هو مجموع الجهود الصغيرة المتكررة يوماً بعد يوم"</p>
-            </div>
-
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-header">
-                        <div>
-                            <p class="stat-label">ساعات الدراسة</p>
-                            <p class="stat-value" id="study-hours">63</p>
-                        </div>
-                        <svg class="icon-lg" style="color: var(--primary);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                        </svg>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-header">
-                        <div>
-                            <p class="stat-label">جلسات مكتملة</p>
-                            <p class="stat-value" id="completed-sessions">0</p>
-                        </div>
-                        <svg class="icon-lg" style="color: var(--secondary);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-header">
-                        <div>
-                            <p class="stat-label">الأهداف المنجزة</p>
-                            <p class="stat-value" id="completed-goals">0/30</p>
-                        </div>
-                        <svg class="icon-lg" style="color: var(--accent);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-header">
-                        <div>
-                            <p class="stat-label">الإنجازات المفتوحة</p>
-                            <p class="stat-value" id="unlocked-achievements">0</p>
-                        </div>
-                        <svg class="icon-lg" style="color: #ffaa00;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
-                            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
-                            <path d="M4 22h16"></path>
-                            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
-                            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
-                            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
+    <div class="subject-card primary">
+      <div class="subject-emoji">⚙️</div>
+      <div class="subject-info">
+        <div class="subject-name">هندسة صناعية / علوم تكنولوجية</div>
+        <div class="subject-meta">معامل 8 — المادة التخصصية</div>
+        <span class="badge gold">أولوية قصوى</span>
+      </div>
+      <div class="subject-hours">
+        <span class="hours-num" style="color: var(--gold);">16</span>
+        <span class="hours-label">ساعة/أسبوع</span>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" style="width:80%; background: var(--gold);"></div>
         </div>
-
-        <!-- Daily Page -->
-        <div id="page-daily" class="container hidden">
-            <h2>جدول اليوم</h2>
-            <div class="day-buttons">
-                <button class="day-btn active" onclick="selectDay(event, 'sunday')">الأحد</button>
-                <button class="day-btn" onclick="selectDay(event, 'monday')">الإثنين</button>
-                <button class="day-btn" onclick="selectDay(event, 'tuesday')">الثلاثاء</button>
-                <button class="day-btn" onclick="selectDay(event, 'wednesday')">الأربعاء</button>
-                <button class="day-btn" onclick="selectDay(event, 'thursday')">الخميس</button>
-                <button class="day-btn" onclick="selectDay(event, 'friday')">الجمعة</button>
-                <button class="day-btn" onclick="selectDay(event, 'saturday')">السبت</button>
-            </div>
-
-            <div class="schedule-grid">
-                <div class="schedule-card">
-                    <h3 class="schedule-title" style="color: var(--primary);">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                        </svg>
-                        المواد الدراسية
-                    </h3>
-                    <div id="study-schedule"></div>
-                </div>
-                <div class="schedule-card">
-                    <h3 class="schedule-title" style="color: #ff0055;">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="m6.5 6.5 11 11"></path>
-                            <path d="m21 21-1-1"></path>
-                            <path d="m3 3 1 1"></path>
-                            <path d="m18 22 4-4"></path>
-                            <path d="m2 6 4-4"></path>
-                            <path d="m3 10 7-7"></path>
-                            <path d="m14 21 7-7"></path>
-                        </svg>
-                        برنامج التمرين
-                    </h3>
-                    <div id="gym-schedule"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Weekly Page -->
-        <div id="page-weekly" class="container hidden">
-            <h2>نظرة أسبوعية</h2>
-            <div id="weekly-content"></div>
-        </div>
-
-        <!-- Goals Page -->
-        <div id="page-goals" class="container hidden">
-            <h2>الأهداف السنوية</h2>
-            <div class="goals-grid" id="goals-content"></div>
-        </div>
-
-        <!-- Timer Page -->
-        <div id="page-timer" class="container hidden">
-            <h2>⏱️ مؤقت الدراسة</h2>
-            <div class="card">
-                <div class="timer-display" id="timer-display">25:00</div>
-                <div class="timer-controls">
-                    <button class="timer-btn" onclick="startTimer()">ابدأ</button>
-                    <button class="timer-btn stop" onclick="stopTimer()">إيقاف</button>
-                    <button class="timer-btn" onclick="resetTimer()">إعادة تعيين</button>
-                </div>
-                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 1rem;">جلسات مكتملة: <strong id="sessions-count" style="color: var(--primary);">0</strong></p>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="timer-progress" style="width: 0%;"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Notes Page -->
-        <div id="page-notes" class="container hidden">
-            <h2>📝 ملاحظاتي اليومية</h2>
-            <div class="card">
-                <label style="font-weight: 700; margin-bottom: 1rem; display: block; color: var(--primary);">ملاحظات اليوم</label>
-                <textarea class="notes-textarea" id="daily-notes" placeholder="اكتب ملاحظاتك هنا..."></textarea>
-                <button class="btn" style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border: none; padding: 1rem 2rem; box-shadow: 0 5px 20px rgba(0, 240, 255, 0.3);" onclick="saveNotes()">💾 حفظ الملاحظات</button>
-            </div>
-        </div>
-
-        <!-- Achievements Page -->
-        <div id="page-achievements" class="container hidden">
-            <h2>🎖️ الإنجازات</h2>
-            <div class="achievement-list" id="achievements-container"></div>
-        </div>
-
-        <!-- Report Page -->
-        <div id="page-report" class="container hidden">
-            <h2>📊 التقارير الشهرية</h2>
-            <div class="card">
-                <h3>ملخص الإنجازات</h3>
-                <div id="monthly-report"></div>
-            </div>
-        </div>
+      </div>
     </div>
 
-    <script>
-        const studySchedule = {
-            sunday: [
-                { subject: 'رياضيات', hours: 3 },
-                { subject: 'فيزياء', hours: 3 },
-                { subject: 'تاريخ', hours: 1.5 },
-                { subject: 'عربية', hours: 1.5 }
-            ],
-            monday: [
-                { subject: 'هندسة', hours: 3 },
-                { subject: 'رياضيات', hours: 3 },
-                { subject: 'فلسفة', hours: 1.5 },
-                { subject: 'فرنسية', hours: 1.5 }
-            ],
-            tuesday: [
-                { subject: 'فيزياء', hours: 3 },
-                { subject: 'هندسة', hours: 3 },
-                { subject: 'جغرافيا', hours: 1.5 },
-                { subject: 'إنجليزية', hours: 1.5 }
-            ],
-            wednesday: [
-                { subject: 'رياضيات', hours: 3 },
-                { subject: 'فيزياء', hours: 3 },
-                { subject: 'إسلامية', hours: 1.5 },
-                { subject: 'أمازيغية', hours: 1.5 }
-            ],
-            thursday: [
-                { subject: 'هندسة', hours: 3 },
-                { subject: 'رياضيات', hours: 3 },
-                { subject: 'تاريخ', hours: 1.5 },
-                { subject: 'فرنسية', hours: 1.5 }
-            ],
-            friday: [
-                { subject: 'فيزياء', hours: 3 },
-                { subject: 'رياضيات', hours: 3 },
-                { subject: 'فلسفة', hours: 1.5 },
-                { subject: 'عربية', hours: 1.5 }
-            ],
-            saturday: [
-                { subject: 'هندسة (مراجعة)', hours: 3 },
-                { subject: 'جغرافيا (مراجعة)', hours: 1.5 },
-                { subject: 'إسلامية (مراجعة)', hours: 1.5 },
-                { subject: 'إنجليزية', hours: 1.5 }
-            ]
-        };
+    <div class="subject-card primary">
+      <div class="subject-emoji">⚗️</div>
+      <div class="subject-info">
+        <div class="subject-name">فيزياء</div>
+        <div class="subject-meta">معامل 6 — ميكانيك · كهرباء · موجات</div>
+        <span class="badge gold">أولوية عالية</span>
+      </div>
+      <div class="subject-hours">
+        <span class="hours-num" style="color: var(--cyan);">12</span>
+        <span class="hours-label">ساعة/أسبوع</span>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" style="width:65%; background: var(--cyan);"></div>
+        </div>
+      </div>
+    </div>
 
-        const gymSchedule = {
-            sunday: ['الصدر', 'البايسبس'],
-            monday: ['الأرجل', 'البطن', 'أسفل الظهر الخفيف'],
-            tuesday: [],
-            wednesday: ['الظهر', 'ترايسبس'],
-            thursday: ['الأكتاف'],
-            friday: ['تصحيح الوضعية', 'العلوي', 'الظهر', 'منتصف الظهر', 'الكتف الخلفي', 'الرقبة'],
-            saturday: []
-        };
+    <div class="subject-card secondary">
+      <div class="subject-emoji">🇫🇷</div>
+      <div class="subject-info">
+        <div class="subject-name">فرنسية</div>
+        <div class="subject-meta">معامل 3 — فهم + تعبير</div>
+        <span class="badge blue">مهم</span>
+      </div>
+      <div class="subject-hours">
+        <span class="hours-num" style="color: var(--blue-light);">3</span>
+        <span class="hours-label">ساعة/أسبوع</span>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" style="width:35%; background: var(--blue);"></div>
+        </div>
+      </div>
+    </div>
 
-        const goals = [
-            {
-                category: 'الأهداف الأكاديمية',
-                color: '#00f0ff',
-                goals: ['الحصول على شهادة البكالوريا بمعدل 17', 'الالتحاق بجامعة الأمن السيبراني', 'تعلم لغات البرمجة: Python و C# و C++']
-            },
-            {
-                category: 'الأهداف الدينية',
-                color: '#00ff88',
-                goals: ['الالتزام بالصلوات وعدم تضييع صلاة', 'ختم القرآن الكريم 3 مرات على الأقل خلال السنة']
-            },
-            {
-                category: 'الأهداف المالية',
-                color: '#ffaa00',
-                goals: ['جمع أكثر من 1000 دولار']
-            },
-            {
-                category: 'أهداف الهجرة',
-                color: '#aa00ff',
-                goals: ['الهجرة والسفر إلى كندا']
-            },
-            {
-                category: 'الأهداف الرياضية',
-                color: '#ff0055',
-                goals: ['تحقيق 100 عقلة متتالية', 'تحقيق 300 بوش أب في مجموعة واحدة', 'تحقيق 100 ديبس في مجموعة واحدة', 'بناء عضلات أفضل من المستوى الحالي']
-            },
-            {
-                category: 'أهداف المشاريع',
-                color: '#0088ff',
-                goals: ['إنجاح قناة YouTube والوصول إلى 100 ألف مشترك', 'النمو على Instagram و TikTok']
-            }
-        ];
+    <div class="subject-card secondary">
+      <div class="subject-emoji">🇬🇧</div>
+      <div class="subject-info">
+        <div class="subject-name">إنجليزية</div>
+        <div class="subject-meta">معامل 3 — فهم + تعبير</div>
+        <span class="badge blue">مهم</span>
+      </div>
+      <div class="subject-hours">
+        <span class="hours-num" style="color: var(--blue-light);">3</span>
+        <span class="hours-label">ساعة/أسبوع</span>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" style="width:35%; background: var(--blue);"></div>
+        </div>
+      </div>
+    </div>
 
-        const achievementsList = [
-            { id: 'first_steps', title: '🚀 الخطوات الأولى', description: 'أكمل أول هدف', condition: () => Object.values(completedGoals).filter(v => v).length >= 1 },
-            { id: 'goal_getter', title: '🎯 صياد الأهداف', description: 'أكمل 5 أهداف', condition: () => Object.values(completedGoals).filter(v => v).length >= 5 },
-            { id: 'study_hard', title: '📚 الطالب المجتهد', description: 'أكمل 10 جلسات دراسة', condition: () => appData.sessions >= 10 },
-            { id: 'week_warrior', title: '⚡ محارب الأسبوع', description: 'ادرس 20 ساعة في الأسبوع', condition: () => true },
-            { id: 'perfectionist', title: '✨ الكمالي', description: 'أكمل جميع الأهداف', condition: () => Object.values(completedGoals).filter(v => v).length === goals.reduce((sum, s) => sum + s.goals.length, 0) },
-            { id: 'night_owl', title: '🌙 طائر الليل', description: 'ادرس بعد منتصف الليل', condition: () => appData.nightStudy }
-        ];
+    <div class="subject-card secondary">
+      <div class="subject-emoji">📖</div>
+      <div class="subject-info">
+        <div class="subject-name">عربية</div>
+        <div class="subject-meta">معامل 3 — نص + تعبير كتابي</div>
+        <span class="badge blue">مهم</span>
+      </div>
+      <div class="subject-hours">
+        <span class="hours-num" style="color: var(--blue-light);">3</span>
+        <span class="hours-label">ساعة/أسبوع</span>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" style="width:35%; background: var(--blue);"></div>
+        </div>
+      </div>
+    </div>
 
-        const quotes = [
-            '"النجاح هو مجموع الجهود الصغيرة المتكررة يوماً بعد يوم"',
-            '"لا تؤجل ما تستطيع فعله اليوم إلى الغد"',
-            '"الطريق إلى النجاح يبدأ بخطوة واحدة"',
-            '"التعليم هو أقوى سلاح يمكنك استخدامه لتغيير العالم"',
-            '"كل خطأ هو درس في طريقك للنجاح"'
-        ];
+    <div class="subject-card tertiary">
+      <div class="subject-emoji">🕌</div>
+      <div class="subject-info">
+        <div class="subject-name">إسلامية + فلسفة + تاريخ/جغرافيا</div>
+        <div class="subject-meta">معامل 2 لكل واحدة</div>
+        <span class="badge purple">ثانوي — حفظ واسترجاع</span>
+      </div>
+      <div class="subject-hours">
+        <span class="hours-num" style="color: #A78BFA;">4</span>
+        <span class="hours-label">ساعة/أسبوع</span>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" style="width:20%; background: var(--purple);"></div>
+        </div>
+      </div>
+    </div>
 
-        const ADMIN_USERNAME = 'houssam';
-        const ADMIN_PASSWORD = '28082008';
+    <div class="subject-card tertiary">
+      <div class="subject-emoji">🏔️</div>
+      <div class="subject-info">
+        <div class="subject-name">أمازيغية</div>
+        <div class="subject-meta">معامل 1 — إجباري</div>
+        <span class="badge purple">ثانوي</span>
+      </div>
+      <div class="subject-hours">
+        <span class="hours-num" style="color: #A78BFA;">1</span>
+        <span class="hours-label">ساعة/أسبوع</span>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" style="width:10%; background: var(--purple);"></div>
+        </div>
+      </div>
+    </div>
 
-        let currentDay = 'sunday';
-        let currentUser = null;
-        let completedGoals = {};
-        let timerInterval = null;
-        let timeLeft = 25 * 60;
-        let appData = {
-            sessions: 0,
-            nightStudy: false,
-            notes: '',
-            lastPage: 'home'
-        };
+  </div>
 
-        window.addEventListener('DOMContentLoaded', function() {
-            loadUserData();
-            const user = localStorage.getItem('hesham_user');
-            if (user) {
-                currentUser = user;
-                showMainApp();
-            } else {
-                showLoginPage();
-            }
-            setupLoginForm();
-        });
+  <!-- DAILY SCHEDULE -->
+  <div class="section-title">
+    <div class="icon" style="background: rgba(59,130,246,0.15);">🕐</div>
+    جدولك اليومي — 3 جلسات × 3 ساعات
+  </div>
 
-        function setupLoginForm() {
-            document.getElementById('login-form').addEventListener('submit', handleLogin);
-        }
+  <div class="daily-grid">
 
-        function handleLogin(e) {
-            e.preventDefault();
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value;
-            const errorDiv = document.getElementById('login-error');
+    <div class="session-block">
+      <div class="session-header morning">🌅 جلسة الصباح &nbsp;|&nbsp; 8:00 – 11:00</div>
+      <div class="session-items">
+        <div class="time-slot">
+          <div class="time">8:00 – 10:00</div>
+          <div class="activity"><strong>مادة رئيسية</strong><br>رياضيات أو علوم تكنولوجية<br><small style="color:var(--text-muted)">دروس + تمارين تطبيقية</small></div>
+        </div>
+        <div class="time-slot">
+          <div class="time">10:00 – 10:15</div>
+          <div class="activity">☕ استراحة قصيرة</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">10:15 – 11:00</div>
+          <div class="activity"><strong>مراجعة + تصحيح</strong><br>تصحيح التمارين + ملخص الدرس</div>
+        </div>
+      </div>
+    </div>
 
-            if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-                currentUser = username;
-                localStorage.setItem('hesham_user', username);
-                errorDiv.style.display = 'none';
-                showMainApp();
-                document.getElementById('display-username').textContent = username;
-                document.getElementById('login-form').reset();
-                const lastPage = appData.lastPage || 'home';
-                setTimeout(() => {
-                    document.querySelector(`[onclick*="'${lastPage}'"]`)?.click();
-                }, 100);
-                updateStats();
-                showNotification('مرحباً بك يا ' + username + '!');
-            } else {
-                errorDiv.textContent = '❌ اسم المستخدم أو كلمة المرور غير صحيحة';
-                errorDiv.style.display = 'block';
-            }
-        }
+    <div class="session-block">
+      <div class="session-header afternoon">☀️ جلسة الظهيرة &nbsp;|&nbsp; 14:00 – 17:00</div>
+      <div class="session-items">
+        <div class="time-slot">
+          <div class="time">14:00 – 15:30</div>
+          <div class="activity"><strong>مادة رئيسية ثانية</strong><br>فيزياء أو رياضيات<br><small style="color:var(--text-muted)">حل مسائل كاملة</small></div>
+        </div>
+        <div class="time-slot">
+          <div class="time">15:30 – 15:45</div>
+          <div class="activity">🧘 استراحة</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">15:45 – 17:00</div>
+          <div class="activity"><strong>مادة لغوية</strong><br>فرنسية / إنجليزية / عربية</div>
+        </div>
+      </div>
+    </div>
 
-        function handleLogout() {
-            if (confirm('هل تريد تسجيل الخروج؟')) {
-                currentUser = null;
-                localStorage.removeItem('hesham_user');
-                showLoginPage();
-                showNotification('تم تسجيل الخروج بنجاح');
-            }
-        }
+    <div class="session-block">
+      <div class="session-header evening">🌙 جلسة المساء &nbsp;|&nbsp; 20:00 – 23:00</div>
+      <div class="session-items">
+        <div class="time-slot">
+          <div class="time">20:00 – 21:00</div>
+          <div class="activity"><strong>مواد ثانوية</strong><br>إسلامية / فلسفة / تاريخ<br><small style="color:var(--text-muted)">حفظ + فهم المفاهيم</small></div>
+        </div>
+        <div class="time-slot">
+          <div class="time">21:00 – 22:30</div>
+          <div class="activity"><strong>مراجعة شاملة</strong><br>إعادة قراءة ما درسته اليوم</div>
+        </div>
+        <div class="time-slot">
+          <div class="time">22:30 – 23:00</div>
+          <div class="activity"><strong>تخطيط الغد</strong><br>كتابة خطة ليوم الغد + مراجعة سريعة</div>
+        </div>
+      </div>
+    </div>
 
-        function showMainApp() {
-            document.getElementById('login-page').classList.add('hidden');
-            document.getElementById('main-app').classList.remove('hidden');
-            updateDailyQuote();
-            updateStats();
-            updateAchievements();
-        }
+  </div>
 
-        function showLoginPage() {
-            document.getElementById('login-page').classList.remove('hidden');
-            document.getElementById('main-app').classList.add('hidden');
-        }
+  <!-- WEEKLY TABLE -->
+  <div class="section-title">
+    <div class="icon" style="background: rgba(16,185,129,0.15);">📅</div>
+    الجدول الأسبوعي التفصيلي
+  </div>
 
-        function loadUserData() {
-            const user = localStorage.getItem('hesham_user');
-            if (user) {
-                currentUser = user;
-                const data = JSON.parse(localStorage.getItem('hesham_data_' + user) || '{}');
-                completedGoals = data.completedGoals || {};
-                appData = { ...appData, ...data };
-            }
-        }
+  <div class="week-table">
+    <table>
+      <thead>
+        <tr>
+          <th>اليوم</th>
+          <th>🌅 جلسة 1 (8-11)</th>
+          <th>☀️ جلسة 2 (14-17)</th>
+          <th>🌙 جلسة 3 (20-23)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="day-name">السبت</div></td>
+          <td><span class="session-pill s-math">🔢 رياضيات</span><br><small>تحليل — الدوال والمشتقات</small></td>
+          <td><span class="session-pill s-phys">⚗️ فيزياء</span><br><small>ميكانيك</small></td>
+          <td><span class="session-pill s-lang">📖 عربية</span> <span class="session-pill s-hum">🕌 إسلامية</span></td>
+        </tr>
+        <tr>
+          <td><div class="day-name">الأحد</div></td>
+          <td><span class="session-pill s-info">⚙️ علوم تكنولوجية</span><br><small>أنظمة ميكانيكية</small></td>
+          <td><span class="session-pill s-math">🔢 رياضيات</span><br><small>جبر — أعداد مركبة</small></td>
+          <td><span class="session-pill s-lang">🇫🇷 فرنسية</span> <span class="session-pill s-hum">🧠 فلسفة</span></td>
+        </tr>
+        <tr>
+          <td><div class="day-name">الاثنين</div></td>
+          <td><span class="session-pill s-math">🔢 رياضيات</span><br><small>احتمالات + إحصاء</small></td>
+          <td><span class="session-pill s-info">⚙️ علوم تكنولوجية</span><br><small>أنظمة كهربائية</small></td>
+          <td><span class="session-pill s-lang">🇬🇧 إنجليزية</span> <span class="session-pill s-hum">🗺️ تاريخ/جغرافيا</span></td>
+        </tr>
+        <tr>
+          <td><div class="day-name">الثلاثاء</div></td>
+          <td><span class="session-pill s-phys">⚗️ فيزياء</span><br><small>كهرباء — دوائر RLC</small></td>
+          <td><span class="session-pill s-math">🔢 رياضيات</span><br><small>حل مسائل + فحص</small></td>
+          <td><span class="session-pill s-lang">🇫🇷 فرنسية</span> <span class="session-pill s-hum">🏔️ أمازيغية</span></td>
+        </tr>
+        <tr>
+          <td><div class="day-name">الأربعاء</div></td>
+          <td><span class="session-pill s-info">⚙️ علوم تكنولوجية</span><br><small>رسم تقني + CAO</small></td>
+          <td><span class="session-pill s-phys">⚗️ فيزياء</span><br><small>موجات + بصريات</small></td>
+          <td><span class="session-pill s-lang">📖 عربية</span> <span class="session-pill s-hum">🕌 إسلامية</span></td>
+        </tr>
+        <tr>
+          <td><div class="day-name">الخميس</div></td>
+          <td><span class="session-pill s-math">🔢 رياضيات</span><br><small>امتحان تجريبي</small></td>
+          <td><span class="session-pill s-info">⚙️ علوم تكنولوجية</span><br><small>امتحان تجريبي</small></td>
+          <td><span class="session-pill s-rev">🔁 مراجعة شاملة</span><br><small>تصحيح أخطاء الأسبوع</small></td>
+        </tr>
+        <tr>
+          <td><div class="day-name" style="color: var(--green);">الجمعة 💚</div></td>
+          <td><span class="session-pill s-lang">🇬🇧 إنجليزية</span><br><small>مراجعة خفيفة</small></td>
+          <td><span class="session-pill s-hum">🧠 فلسفة</span><br><small>مقالة واحدة</small></td>
+          <td><span class="session-pill s-rest">🌙 راحة تامة</span><br><small>لا دراسة — نم مبكراً</small></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-        function saveUserData() {
-            if (currentUser) {
-                const data = {
-                    user: currentUser,
-                    completedGoals: completedGoals,
-                    ...appData,
-                    lastVisit: new Date().toISOString()
-                };
-                localStorage.setItem('hesham_data_' + currentUser, JSON.stringify(data));
-            }
-        }
+  <!-- 3 PHASES -->
+  <div class="section-title">
+    <div class="icon" style="background: rgba(239,68,68,0.15);">🗺️</div>
+    خطة الـ 100 يوم — 3 مراحل
+  </div>
 
-        function showPage(e, page) {
-            e.preventDefault();
-            appData.lastPage = page;
-            saveUserData();
-            document.querySelectorAll('[id^="page-"]').forEach(p => p.classList.add('hidden'));
-            document.getElementById('page-' + page).classList.remove('hidden');
-            
-            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-            e.target.classList.add('active');
+  <div class="phases-grid">
 
-            if (page === 'daily') {
-                updateDailySchedule();
-            } else if (page === 'weekly') {
-                updateWeeklySchedule();
-            } else if (page === 'goals') {
-                updateGoals();
-            } else if (page === 'timer') {
-                updateTimerDisplay();
-            } else if (page === 'notes') {
-                loadNotes();
-            } else if (page === 'achievements') {
-                updateAchievements();
-            } else if (page === 'report') {
-                updateMonthlyReport();
-            } else if (page === 'home') {
-                updateStats();
-            }
-        }
+    <div class="phase-card phase-1" data-phase="1">
+      <div class="phase-num">1</div>
+      <div class="phase-title">📘 مرحلة البناء</div>
+      <div class="phase-days">الأيام 1 → 35 (5 أسابيع)</div>
+      <ul class="phase-list">
+        <li>اقرأ كل الدروس من الصفر بترتيب</li>
+        <li>اصنع ملخصاً مكثفاً لكل درس</li>
+        <li>حل تمرينين بسيطين لكل درس فوراً</li>
+        <li>لا تنتقل لدرس قبل أن تفهم السابق</li>
+        <li>ركّز على الرياضيات والهندسة أكثر</li>
+      </ul>
+    </div>
 
-        function selectDay(e, day) {
-            currentDay = day;
-            document.querySelectorAll('.day-btn').forEach(b => b.classList.remove('active'));
-            e.target.classList.add('active');
-            updateDailySchedule();
-        }
+    <div class="phase-card phase-2" data-phase="2">
+      <div class="phase-num">2</div>
+      <div class="phase-title">📙 مرحلة التعمق</div>
+      <div class="phase-days">الأيام 36 → 75 (6 أسابيع)</div>
+      <ul class="phase-list">
+        <li>حل امتحانات الباكالوريا السابقة (2019-2024)</li>
+        <li>رصّد الأخطاء المتكررة وصحّحها</li>
+        <li>تعلّم تقنية إدارة الوقت في الامتحان</li>
+        <li>أسبوع بأسبوع: اختبر نفسك بدون كتاب</li>
+        <li>ركّز على النقاط التي تكررت في الامتحانات</li>
+      </ul>
+    </div>
 
-        function updateDailySchedule() {
-            const studyDiv = document.getElementById('study-schedule');
-            const gymDiv = document.getElementById('gym-schedule');
-            
-            studyDiv.innerHTML = studySchedule[currentDay].map(s => 
-                `<div class="subject-item">
-                    <p style="font-weight: 700;">${s.subject}</p>
-                    <p class="stat-label">${s.hours} ساعات</p>
-                </div>`
-            ).join('');
+    <div class="phase-card phase-3" data-phase="3">
+      <div class="phase-num">3</div>
+      <div class="phase-title">📕 مرحلة الصقل النهائي</div>
+      <div class="phase-days">الأيام 76 → 100 (3.5 أسابيع)</div>
+      <ul class="phase-list">
+        <li>محاكاة امتحان حقيقي كل يومين بالوقت</li>
+        <li>مراجعة الملخصات فقط — لا دروس جديدة</li>
+        <li>تقليص الساعات تدريجياً (9 → 7 → 5)</li>
+        <li>آخر 3 أيام: راحة + مراجعة خفيفة جداً</li>
+        <li>نم 8 ساعات كاملة ليلة الامتحان</li>
+      </ul>
+    </div>
 
-            if (gymSchedule[currentDay].length > 0) {
-                gymDiv.innerHTML = gymSchedule[currentDay].map(e => 
-                    `<div class="gym-item">
-                        <p style="font-weight: 700; color: #ff5588;">${e}</p>
-                    </div>`
-                ).join('');
-            } else {
-                gymDiv.innerHTML = '<div style="padding: 1rem; background-color: rgba(50, 50, 70, 0.3); border-radius: 0.5rem; text-align: center;"><p class="stat-label">لا يوجد تمرين في هذا اليوم</p></div>';
-            }
-        }
+  </div>
 
-        function updateWeeklySchedule() {
-            const weeklyDiv = document.getElementById('weekly-content');
-            const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-            const dayNames = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
-            
-            weeklyDiv.innerHTML = days.map((day, i) => {
-                const studyItems = studySchedule[day].map(s => 
-                    `<div class="subject-item" style="margin-bottom: 0.75rem;">
-                        <p style="font-weight: 700;">${s.subject}</p>
-                        <p style="font-size: 0.875rem; color: var(--primary);">${s.hours}h</p>
-                    </div>`
-                ).join('');
+  <!-- TIPS FOR WEAK LEVEL -->
+  <div class="section-title">
+    <div class="icon" style="background: rgba(245,166,35,0.15);">💡</div>
+    نصائح خاصة لمستواك — من ضعيف إلى ممتاز
+  </div>
 
-                let gymItems = '';
-                if (gymSchedule[day].length > 0) {
-                    gymItems = `<div>
-                        <h4 style="font-weight: 700; margin-bottom: 0.75rem; color: #ff0055;">برنامج التمرين</h4>
-                        ${gymSchedule[day].map(e => 
-                            `<div class="gym-item" style="margin-bottom: 0.75rem;">
-                                <p style="font-weight: 700; color: #ff5588;">${e}</p>
-                            </div>`
-                        ).join('')}
-                    </div>`;
-                }
+  <div class="tips-grid">
 
-                return `<div class="goal-category">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem;">${dayNames[i]}</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                        <div>
-                            <h4 style="font-weight: 700; margin-bottom: 0.75rem; color: var(--primary);">المواد الدراسية</h4>
-                            ${studyItems}
-                        </div>
-                        ${gymItems}
-                    </div>
-                </div>`;
-            }).join('');
-        }
+    <div class="tip-card">
+      <div class="tip-icon">🧱</div>
+      <div class="tip-title">ابدأ من الأساس</div>
+      <div class="tip-text">لا تخجل من مراجعة دروس السنة الثانية. الأساس القوي يبني النجاح. ساعة على المفهوم الأساسي أفضل من 3 ساعات على مسألة صعبة لم تفهمها.</div>
+    </div>
 
-        function updateGoals() {
-            const goalsDiv = document.getElementById('goals-content');
-            goalsDiv.innerHTML = goals.map(section => `
-                <div class="goal-category">
-                    <h3 style="color: ${section.color}; margin-bottom: 1rem;">${section.category}</h3>
-                    <div class="goal-items">
-                        ${section.goals.map((goal, idx) => {
-                            const goalKey = section.category + '_' + idx;
-                            const isCompleted = completedGoals[goalKey];
-                            return `
-                            <div class="goal-item ${isCompleted ? 'completed' : ''}" 
-                                 style="border-color: ${section.color}; background: linear-gradient(135deg, ${section.color}20 0%, ${section.color}08 100%);"
-                                 onclick="toggleGoal('${goalKey}', event)">
-                                <p style="font-weight: 700; margin-bottom: 0.5rem;">${goal}</p>
-                                <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem;">
-                                    <svg style="width: 16px; height: 16px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <polyline points="20 6 9 17 4 12"></polyline>
-                                    </svg>
-                                    <span class="stat-label">${isCompleted ? '✅ تم الإنجاز' : '⏳ جاري العمل'}</span>
-                                </div>
-                            </div>
-                            `;
-                        }).join('')}
-                    </div>
-                </div>
-            `).join('');
-        }
+    <div class="tip-card">
+      <div class="tip-icon">✏️</div>
+      <div class="tip-title">الحل على الورقة دائماً</div>
+      <div class="tip-text">في الرياضيات والفيزياء: لا تحلّ في رأسك ولا تنقل الحلول. اكتب كل خطوة بيدك. هذا يثبّت المعلومة ويكشف ثغراتك.</div>
+    </div>
 
-        function toggleGoal(goalKey, e) {
-            e.stopPropagation();
-            completedGoals[goalKey] = !completedGoals[goalKey];
-            saveUserData();
-            updateGoals();
-            updateStats();
-            showNotification(completedGoals[goalKey] ? '✅ تم تحديث الهدف' : '↩️ تم حذف علامة الهدف');
-        }
+    <div class="tip-card">
+      <div class="tip-icon">🔄</div>
+      <div class="tip-title">قاعدة التكرار المتباعد</div>
+      <div class="tip-text">راجع ما درسته يوم 1 في يوم 3، ثم يوم 7، ثم يوم 14. هذه الطريقة تثبّت المعلومة في الذاكرة طويلة المدى بشكل علمي.</div>
+    </div>
 
-        function startTimer() {
-            if (timerInterval) return;
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                updateTimerDisplay();
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    timerInterval = null;
-                    playTimerSound();
-                    appData.sessions++;
-                    saveUserData();
-                    updateStats();
-                    showNotification('🎉 تم إكمال جلسة دراسة واحدة!');
-                    timeLeft = 25 * 60;
-                }
-            }, 1000);
-        }
+    <div class="tip-card">
+      <div class="tip-icon">📝</div>
+      <div class="tip-title">ملخص بخط يدك</div>
+      <div class="tip-text">بعد كل درس، أغلق الكتاب واكتب ما حفظته بكلامك الخاص. هذا أقوى من القراءة × 10. ورقة واحدة لكل درس.</div>
+    </div>
 
-        function stopTimer() {
-            if (timerInterval) {
-                clearInterval(timerInterval);
-                timerInterval = null;
-            }
-        }
+    <div class="tip-card">
+      <div class="tip-icon">⏱️</div>
+      <div class="tip-title">تقنية بومودورو</div>
+      <div class="tip-text">25 دقيقة تركيز كامل + 5 دقائق استراحة. كرّر 4 مرات ثم استراحة 20 دقيقة. هذا يحافظ على تركيزك طوال 9 ساعات.</div>
+    </div>
 
-        function resetTimer() {
-            stopTimer();
-            timeLeft = 25 * 60;
-            updateTimerDisplay();
-        }
+    <div class="tip-card">
+      <div class="tip-icon">📵</div>
+      <div class="tip-title">الهاتف = العدو الأول</div>
+      <div class="tip-text">ضع الهاتف خارج الغرفة أثناء الدراسة. كل إشعار يكسر تركيزك 23 دقيقة (هذا ليس مبالغة، إنه نتيجة دراسة علمية).</div>
+    </div>
 
-        function updateTimerDisplay() {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
-            document.getElementById('timer-display').textContent = 
-                String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
-            
-            const totalSeconds = 25 * 60;
-            const progress = ((totalSeconds - timeLeft) / totalSeconds) * 100;
-            const progressBar = document.getElementById('timer-progress');
-            if (progressBar) progressBar.style.width = progress + '%';
-            
-            const sessionsCount = document.getElementById('sessions-count');
-            if (sessionsCount) sessionsCount.textContent = appData.sessions;
-        }
+    <div class="tip-card">
+      <div class="tip-icon">😴</div>
+      <div class="tip-title">النوم = مراجعة مجانية</div>
+      <div class="tip-text">أثناء النوم، دماغك يرتّب ويثبّت كل ما درسته. 7-8 ساعات نوم ضرورية. الدراسة بدون نوم كافٍ = وقت ضائع.</div>
+    </div>
 
-        function playTimerSound() {
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            oscillator.frequency.value = 800;
-            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
-            oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + 0.5);
-        }
+    <div class="tip-card">
+      <div class="tip-icon">🎯</div>
+      <div class="tip-title">فكّر في النقاط لا في المادة</div>
+      <div class="tip-text">في الرياضيات، تقنية اكتساب نقاط جزئية مهمة جداً. حتى لو ما كملت المسألة، اكتب ما تعرفه وستأخذ نقاط.</div>
+    </div>
 
-        function saveNotes() {
-            appData.notes = document.getElementById('daily-notes').value;
-            saveUserData();
-            showNotification('✅ تم حفظ الملاحظات');
-        }
+  </div>
 
-        function loadNotes() {
-            document.getElementById('daily-notes').value = appData.notes || '';
-        }
+  <!-- MOTIVATION -->
+  <div class="motivation">
+    <h2>🚀 100 يوم تغيّر مسارك كله</h2>
+    <p>
+      الفرق بين طالب بـ 10 وطالب بـ 19 مو الذكاء —
+      هو <strong style="color:var(--gold)">الانتظام والمنهجية</strong>.<br>
+      أنت اخترت الطريق الصعب الصحيح. <br>
+      كل يوم تلتزم بهذا البرنامج هو نقطة تضيفها لمعدلك النهائي. 💪
+    </p>
+    <br>
+    <div style="color: var(--text-muted); font-size: 13px;">
+      "النجاح ليس نتيجة قرار واحد — هو نتيجة 100 يوم من القرارات الصغيرة الصحيحة"
+    </div>
+  </div>
 
-        function updateAchievements() {
-            const container = document.getElementById('achievements-container');
-            let unlockedCount = 0;
-            
-            container.innerHTML = achievementsList.map(achievement => {
-                const isUnlocked = achievement.condition();
-                if (isUnlocked) unlockedCount++;
-                return `
-                    <div class="achievement-item ${isUnlocked ? 'unlocked' : ''}">
-                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">${achievement.title.split(' ')[0]}</div>
-                        <p style="font-weight: 700; margin-bottom: 0.25rem;">${achievement.title}</p>
-                        <p style="font-size: 0.875rem; color: var(--text-secondary);">${achievement.description}</p>
-                        <p style="margin-top: 0.5rem; font-size: 0.8rem; color: ${isUnlocked ? '#ffaa00' : '#666'};">${isUnlocked ? '✅ تم الفتح' : '🔒 مغلق'}</p>
-                    </div>
-                `;
-            }).join('');
-
-            document.getElementById('unlocked-achievements').textContent = unlockedCount;
-        }
-
-        function updateMonthlyReport() {
-            const reportDiv = document.getElementById('monthly-report');
-            const completedCount = Object.values(completedGoals).filter(v => v).length;
-            const totalGoals = goals.reduce((sum, s) => sum + s.goals.length, 0);
-            const completionRate = ((completedCount / totalGoals) * 100).toFixed(1);
-
-            reportDiv.innerHTML = `
-                <div style="margin-bottom: 2rem;">
-                    <p style="margin-bottom: 1rem; color: var(--text-secondary);">نسبة إكمال الأهداف: <strong style="color: var(--primary);">${completionRate}%</strong></p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: ${completionRate}%;"></div>
-                    </div>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
-                    <div style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 1.5rem; border-radius: 15px; text-align: center;">
-                        <p style="font-size: 0.875rem; margin-bottom: 0.25rem;">جلسات الدراسة</p>
-                        <p style="font-size: 2.5rem; font-weight: 700; font-family: 'Orbitron', sans-serif;">${appData.sessions}</p>
-                    </div>
-                    <div style="background: linear-gradient(135deg, #ffaa00, #ff6600); color: white; padding: 1.5rem; border-radius: 15px; text-align: center;">
-                        <p style="font-size: 0.875rem; margin-bottom: 0.25rem;">الأهداف المكتملة</p>
-                        <p style="font-size: 2.5rem; font-weight: 700; font-family: 'Orbitron', sans-serif;">${completedCount}/${totalGoals}</p>
-                    </div>
-                    <div style="background: linear-gradient(135deg, var(--accent), #00cc66); color: white; padding: 1.5rem; border-radius: 15px; text-align: center;">
-                        <p style="font-size: 0.875rem; margin-bottom: 0.25rem;">الإنجازات المفتوحة</p>
-                        <p style="font-size: 2.5rem; font-weight: 700; font-family: 'Orbitron', sans-serif;">${achievementsList.filter(a => a.condition()).length}</p>
-                    </div>
-                </div>
-            `;
-        }
-
-        function updateDailyQuote() {
-            const quote = quotes[Math.floor(Math.random() * quotes.length)];
-            document.getElementById('daily-quote').textContent = quote;
-        }
-
-        function updateStats() {
-            const totalStudyHours = Object.values(studySchedule).reduce((sum, day) => 
-                sum + day.reduce((daySum, subject) => daySum + subject.hours, 0), 0
-            );
-            
-            document.getElementById('study-hours').textContent = totalStudyHours;
-            document.getElementById('completed-sessions').textContent = appData.sessions;
-            
-            const completedCount = Object.values(completedGoals).filter(v => v).length;
-            const totalGoals = goals.reduce((sum, section) => sum + section.goals.length, 0);
-            document.getElementById('completed-goals').textContent = completedCount + '/' + totalGoals;
-            
-            const unlockedAchievements = achievementsList.filter(a => a.condition()).length;
-            document.getElementById('unlocked-achievements').textContent = unlockedAchievements;
-        }
-
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.className = 'notification';
-            notification.textContent = message;
-            document.body.appendChild(notification);
-            setTimeout(() => notification.remove(), 3000);
-        }
-    </script>
+</div>
 </body>
 </html>
